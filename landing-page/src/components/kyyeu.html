@@ -1,0 +1,282 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Download, 
+  BookOpen, 
+  Sparkles, 
+  ChevronRight, 
+  Zap, 
+  ShieldCheck, 
+  Fingerprint,
+  Maximize2,
+  History,
+  Play,
+  Rotate3d,
+  Layers,
+  Star
+} from 'lucide-react';
+
+export default function App() {
+  const [activeChapter, setActiveChapter] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  // Hiệu ứng Parallax nhẹ cho cảm giác "bay"
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth - 0.5) * 15,
+        y: (e.clientY / window.innerHeight - 0.5) * 15,
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Hệ màu Gold lấy từ hình ảnh bạn cung cấp
+  const goldGradient = "linear-gradient(90deg, #B8860B 0%, #F9E498 50%, #9B7E3D 100%)";
+  const goldText = "text-transparent bg-clip-text bg-gradient-to-b from-[#F9E498] via-[#F9E498] to-[#9B7E3D]";
+
+  const chapters = [
+    { id: "01", title: "Khởi nguồn 1996", tag: "Gốc rễ" },
+    { id: "02", title: "Vượt sóng toàn cầu", tag: "Bản lĩnh" },
+    { id: "03", title: "Kỷ nguyên Xanh", tag: "Tầm nhìn" },
+    { id: "04", title: "Cây đại thụ", tag: "Di sản" }
+  ];
+
+  return (
+    <section className="relative min-h-screen bg-gradient-to-br from-[#4a0a0d] via-[#8A131A] to-[#5d0e12] text-white flex flex-col justify-center overflow-hidden font-sans selection:bg-yellow-500 selection:text-black">
+      
+      {/* Background Kinetic Art - Cinematic Red Theme */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 right-0 w-[70vw] h-[70vw] bg-yellow-500/10 rounded-full blur-[180px] -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-white/5 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/2" />
+        
+        {/* Architectural Lines */}
+        <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `linear-gradient(to right, #F9E498 1px, transparent 1px), linear-gradient(to bottom, #F9E498 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
+
+        {/* Large Watermark */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none">
+          <span className="text-[45vw] font-black leading-none tracking-tighter italic text-white">30</span>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 max-w-[1600px] relative z-10">
+        
+        <div className="relative flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-0">
+          
+          {/* 1. TYPOGRAPHY ARCHITECTURE (LEFT) */}
+          <div className="w-full lg:w-1/3 order-2 lg:order-1 z-20">
+            <div className="space-y-8">
+              <div className="flex items-center gap-4 animate-in fade-in slide-in-from-left duration-1000">
+                <span className="h-[1px] w-16 bg-gradient-to-r from-yellow-500/80 to-transparent" />
+                <span className="text-[10px] font-black uppercase tracking-[0.6em] text-yellow-400/80 italic">The Archive Singularity</span>
+              </div>
+              
+              <h2 className={`text-7xl md:text-9xl font-black leading-[0.85] tracking-tighter italic mb-10 drop-shadow-2xl ${goldText}`}>
+                DI SẢN <br /> THƯỢNG <br /> HẠNG.
+              </h2>
+
+              <div className="max-w-md relative">
+                <div className="absolute -left-8 top-0 bottom-0 w-[2px] bg-gradient-to-b from-yellow-500 to-transparent" />
+                <p className="text-xl text-white/70 leading-relaxed font-light pl-8">
+                  Vượt xa một cuốn sách kỹ thuật số, đây là <span className="text-yellow-400 font-bold italic underline decoration-1 underline-offset-8">"Chương trình Vàng"</span> giải mã hành trình 30 năm kiến tạo. Tư liệu độc bản dành riêng cho những nhà lãnh đạo tầm vóc.
+                </p>
+              </div>
+
+              {/* Action Buttons - Liquid Gold Bar Style */}
+              <div className="flex flex-col gap-5 pt-12">
+                <button 
+                  className="group relative h-20 w-full md:w-[420px] rounded-2xl overflow-hidden flex items-center justify-center gap-5 transition-all active:scale-95 shadow-[0_20px_50px_rgba(184,134,11,0.3)]"
+                  style={{ background: goldGradient }}
+                >
+                  <div className="absolute inset-0 bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 skew-x-12" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700 delay-100" />
+                  <Download className="w-6 h-6 text-[#4a0a0d]" />
+                  <span className="text-[#4a0a0d] font-black uppercase tracking-[0.2em] text-sm">Bắt đầu tải lên ký ức</span>
+                </button>
+
+                <button className="group h-20 w-full md:w-[420px] rounded-2xl border border-white/20 bg-white/5 backdrop-blur-md flex items-center justify-center gap-5 hover:bg-white hover:text-black transition-all duration-700 shadow-xl">
+                  <div className="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center group-hover:bg-black/10">
+                    <Play className="w-5 h-5 text-yellow-500 fill-current" />
+                  </div>
+                  <span className="font-black uppercase tracking-[0.2em] text-sm">Xem Flipbook 3D</span>
+                  <div className="w-2 h-2 rounded-full bg-yellow-500 animate-ping ml-2" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* 2. THE FLOATING SINGULARITY (CENTER) */}
+          <div className="w-full lg:w-1/2 flex items-center justify-center order-1 lg:order-2 py-20 relative">
+            
+            {/* Elegant HUD Circles */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+               <div className="w-[500px] h-[500px] border border-white/5 rounded-full animate-spin-slow" />
+               <div className="w-[600px] h-[600px] border border-yellow-500/10 rounded-full animate-spin-reverse opacity-50" />
+            </div>
+
+            <div 
+              className="relative z-10 perspective-2000 transition-transform duration-300"
+              style={{ transform: `rotateY(${mousePos.x}deg) rotateX(${-mousePos.y}deg)` }}
+            >
+              {/* Core Visual: The Book */}
+              <div className="relative w-[300px] md:w-[500px] aspect-[3/4] group cursor-grab active:cursor-grabbing">
+                
+                {/* Book Shadow / Aura */}
+                <div className="absolute -inset-10 bg-[#8A131A] blur-[100px] rounded-full opacity-40 group-hover:opacity-60 transition-opacity" />
+                <div className="absolute -inset-2 bg-gradient-to-r from-yellow-500/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                
+                {/* Physical Spine */}
+                <div className="absolute top-0 -left-[18px] w-[18px] h-full bg-[#2a080a] origin-right rotate-y-[-90deg] shadow-2xl" />
+                
+                {/* Book Cover */}
+                <div className="absolute inset-0 rounded-r-3xl overflow-hidden border border-white/10 bg-[#1e0406] shadow-[60px_60px_120px_rgba(0,0,0,0.5)]">
+                  <img 
+                    src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=1200" 
+                    className="w-full h-full object-cover transition-all duration-1000 grayscale group-hover:grayscale-0 group-hover:scale-105"
+                    alt="Cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#4a0a0d] via-transparent to-transparent opacity-90" />
+                  
+                  {/* Floating Elements on Cover */}
+                  <div className="absolute inset-0 p-12 flex flex-col justify-between">
+                    <div className="flex justify-between items-start">
+                       <Fingerprint className="w-12 h-12 text-yellow-500/60 animate-pulse" />
+                       <div className="px-3 py-1 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full">
+                          <p className="text-[10px] font-black text-yellow-500 uppercase tracking-[0.2em] leading-none">Security Verified</p>
+                       </div>
+                    </div>
+                    <div className="space-y-4">
+                       <div className="w-12 h-1 bg-yellow-500" />
+                       <h3 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-tight text-white group-hover:translate-x-2 transition-transform">
+                         KHO <br/> TÀU <br/> VÀNG.
+                       </h3>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Light Reflections */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-white/10 via-transparent to-white/20 opacity-30 group-hover:opacity-60 transition-opacity" />
+              </div>
+            </div>
+
+            {/* Floating Data Fragments - Glassmorphism */}
+            <div className="absolute top-10 right-0 md:top-20 md:right-10 animate-float">
+               <div className="bg-white/10 backdrop-blur-2xl border border-white/20 p-5 rounded-[2rem] flex items-center gap-5 shadow-2xl">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-lg">
+                    <Zap className="w-6 h-6 text-[#4a0a0d]" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none mb-1">Dung lượng</p>
+                    <p className="font-mono text-lg font-bold text-white">45.8 MB</p>
+                  </div>
+               </div>
+            </div>
+
+            <div className="absolute bottom-20 left-0 md:bottom-32 md:-left-10 animate-float-delayed">
+               <div className="bg-white/10 backdrop-blur-2xl border border-white/20 p-5 rounded-[2rem] flex items-center gap-5 shadow-2xl">
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center">
+                    <Maximize2 className="w-6 h-6 text-yellow-500" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none mb-1">Độ phân giải</p>
+                    <p className="font-mono text-lg font-bold text-white uppercase">Ultra 4K</p>
+                  </div>
+               </div>
+            </div>
+          </div>
+
+          {/* 3. DYNAMIC CONTENT FRAGMENTS (RIGHT) */}
+          <div className="w-full lg:w-[380px] order-3 z-20">
+            <div className="space-y-12">
+               
+               {/* Foreword Segment */}
+               <div className="relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-md group hover:bg-white/10 transition-all duration-500">
+                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-yellow-500 rounded-2xl flex items-center justify-center shadow-xl rotate-[-10deg] group-hover:rotate-0 transition-transform">
+                     <Star className="w-6 h-6 text-[#4a0a0d] fill-current" />
+                  </div>
+                  <p className="text-xs font-black uppercase tracking-[0.4em] text-yellow-500 mb-6 mt-2">Lời mở đầu</p>
+                  <p className="text-base text-white/70 italic leading-relaxed mb-8">
+                    "Chúng ta không nhìn lại để hoài niệm về quá khứ, chúng ta nhìn lại để thấy bản lĩnh và chuẩn bị cho một chu kỳ phát triển xanh hơn, bền vững hơn..."
+                  </p>
+                  <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                     <div className="w-14 h-14 rounded-full border-2 border-yellow-500/30 overflow-hidden shadow-lg grayscale group-hover:grayscale-0 transition-all">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" alt="Chairman" />
+                     </div>
+                     <div>
+                        <p className="text-[11px] font-black text-white uppercase tracking-tighter mb-1">Bà Vũ Kim Hạnh</p>
+                        <p className="text-[10px] text-yellow-500 font-bold uppercase tracking-widest">Chủ tịch HVNCLC</p>
+                     </div>
+                  </div>
+               </div>
+
+               {/* Chapters Explorer */}
+               <div className="space-y-6">
+                  <p className="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8 flex items-center justify-between">
+                    <span>Mục lục di sản</span>
+                    <History className="w-5 h-5" />
+                  </p>
+                  <div className="space-y-3">
+                    {chapters.map((chap, idx) => (
+                      <div 
+                        key={idx} 
+                        onMouseEnter={() => setActiveChapter(idx)}
+                        className={`group flex items-center justify-between p-5 rounded-2xl transition-all duration-500 cursor-pointer border ${
+                          activeChapter === idx 
+                          ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 border-transparent translate-x-3 shadow-2xl' 
+                          : 'bg-white/5 border-white/5 opacity-50 hover:opacity-100'
+                        }`}
+                      >
+                         <div className="flex items-center gap-5">
+                            <span className={`font-mono text-sm font-bold ${activeChapter === idx ? 'text-[#4a0a0d]' : 'text-yellow-500'}`}>{chap.id}</span>
+                            <span className={`text-[11px] font-black uppercase tracking-widest ${activeChapter === idx ? 'text-[#4a0a0d]' : 'text-white'}`}>{chap.title}</span>
+                         </div>
+                         <div className={`px-2.5 py-1 rounded-lg text-[8px] font-black uppercase border transition-all ${
+                           activeChapter === idx ? 'bg-[#4a0a0d] border-[#4a0a0d] text-white' : 'border-white/20 text-white/40'
+                         }`}>
+                           {chap.tag}
+                         </div>
+                      </div>
+                    ))}
+                  </div>
+               </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .perspective-2000 { perspective: 2000px; }
+        .transform-3d { transform-style: preserve-3d; }
+        .rotate-y-[-25deg] { transform: rotateY(-25deg); }
+        .rotate-y-[-90deg] { transform: rotateY(-90deg); }
+        .rotate-x-[10deg] { transform: rotateX(10deg); }
+        
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes spin-reverse {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-30px) rotate(2deg); }
+        }
+        @keyframes shimmer {
+          0% { transform: translateX(-100%) skewX(-12deg); }
+          100% { transform: translateX(200%) skewX(-12deg); }
+        }
+        
+        .animate-spin-slow { animation: spin-slow 40s linear infinite; }
+        .animate-spin-reverse { animation: spin-reverse 60s linear infinite; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 8s ease-in-out infinite 1s; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+      `}} />
+    </section>
+  );
+}

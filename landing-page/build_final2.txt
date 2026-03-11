@@ -1,0 +1,82 @@
+﻿
+> landing-page@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+node.exe : ΓÜá The 
+"middleware" file 
+convention is 
+deprecated. Please use 
+"proxy" instead. Learn 
+more: https://nextjs.or
+g/docs/messages/middlew
+are-to-proxy
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (ΓÜá The "midd   
+ le...leware-to-pro    
+xy:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 26.2s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+(node:19900) Warning: 
+`--localstorage-file` 
+was provided without a 
+valid path
+(Use `node 
+--trace-warnings ...` 
+to show where the 
+warning was created)
+  Generating static pages using 11 workers (0/4) ...
+  Generating static pages using 11 workers (1/4) 
+ΓÜá metadataBase 
+property in metadata 
+export is not set for 
+resolving social open 
+graph or twitter 
+images, using "http://l
+ocalhost:3000". See htt
+ps://nextjs.org/docs/ap
+p/api-reference/functio
+ns/generate-metadata#me
+tadatabase
+  Generating static pages using 11 workers (2/4) 
+  Generating static pages using 11 workers (3/4) 
+Γ£ô Generating static pages using 11 workers (4/4) in 305.9ms
+  Finalizing page optimization ...
+
+Route (app)
+Γöî Γùï /_not-found
+Γö£ ╞Æ /[lang]
+Γö£ ╞Æ /[lang]/cau-chuyen-hinh-anh
+Γö£ ╞Æ /[lang]/ebook
+Γö£ ╞Æ /[lang]/ho-da-noi
+Γö£ ╞Æ /[lang]/le-cong-bo-2026
+Γö£ ╞Æ /[lang]/lich-su-30-nam
+Γö£ ╞Æ /api/revalidate
+Γöö ╞Æ /studio/[[...tool]]
+
+
+╞Æ Proxy (Middleware)
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+

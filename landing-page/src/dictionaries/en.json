@@ -1,0 +1,37 @@
+{
+    "navigation": {
+        "timeline": "30-Year Journey",
+        "event": "2026 Ceremony",
+        "sponsor": "Sponsorship"
+    },
+    "hero": {
+        "years": "1996 - 2026",
+        "title1": "30 YEARS OF HIGH QUALITY VIETNAMESE GOODS",
+        "title2": "PRIDE & CONTINUANCE",
+        "desc": "A journey built on consumer trust and the bravery of Vietnamese enterprises.",
+        "cta_timeline": "View 30-year journey",
+        "cta_event": "Attend / Accompany"
+    },
+    "core_values": {
+        "section_title": "Core Values",
+        "section_subtitle": "Directions through 3 decades",
+        "v1_title": "Empowering Consumers",
+        "v1_desc": "A pioneering program to empower consumers to directly evaluate and select deserving businesses, establishing the most objective measure for quality.",
+        "v1_unit": "national surveys",
+        "v2_title": "Accompanying Ecosystem",
+        "v2_desc": "From a voting campaign, it has developed into a strong ecosystem supporting businesses with trade promotions, fairs, and deep connections.",
+        "v2_unit": "fairs & markets",
+        "v3_title": "Pioneering Integration & Green Transition",
+        "v3_desc": "Continuously updating international integration standards, building 'Green Standards' and digitizing operations to accompany businesses in sustainable development.",
+        "v3_unit": "Go Global programs"
+    },
+    "footer": {
+        "desc": "30-year journey of Pride and Continuance (1996 - 2026). An ecosystem accompanying Vietnamese enterprises to reach out to the world.",
+        "contact_title": "Contact Information",
+        "org": "Organizer: Business Association of High Quality Vietnamese Goods",
+        "links_title": "Quick Links",
+        "link1": "History Timeline",
+        "link2": "30-Year Yearbook Documents",
+        "copyright": "© 2026 Business Association of High Quality Vietnamese Goods. All rights reserved."
+    }
+}

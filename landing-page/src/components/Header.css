@@ -1,0 +1,80 @@
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--c-bg-card);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+    padding: 1rem 0;
+    transition: var(--transition-base);
+}
+
+/* Header layout chỉnh giữa logo */
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.main-nav.left-nav {
+    flex: 1;
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+.main-nav.right-nav {
+    flex: 1;
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-end;
+    align-items: center;
+}
+.center-logo {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+}
+.logo-link img {
+    display: block;
+    margin: 0 auto;
+    max-height: 56px;
+    width: auto;
+}
+.logo-30nam-text {
+    font-family: var(--font-serif);
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--c-gold-dark);
+}
+
+.logo-divider {
+    color: #ccc;
+    font-weight: 300;
+}
+
+.logo-30nam {
+    color: var(--c-gold-dark);
+}
+
+.main-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    font-weight: 600;
+    color: var(--c-text-primary);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+    color: var(--c-primary);
+}

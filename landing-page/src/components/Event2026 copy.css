@@ -1,0 +1,112 @@
+.event-section {
+    background-color: var(--c-bg-light);
+}
+
+.event-banner {
+    position: relative;
+    background-color: var(--c-primary-dark);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    color: var(--c-text-inverse);
+    display: flex;
+}
+
+.event-bg-image {
+    flex: 1;
+    /* Mock background for event */
+    background: linear-gradient(to right, rgba(138, 19, 26, 0.9), rgba(138, 19, 26, 0.4)), url('https://placehold.co/800x600/C71B26/FFF?text=Dinh+Doc+Lap');
+    background-size: cover;
+    background-position: center;
+    min-height: 100%;
+}
+
+.event-content {
+    flex: 1.5;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.event-title {
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.meta-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+}
+
+.event-desc {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+}
+
+.event-activities {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition-base);
+}
+
+.activity-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.act-icon {
+    font-size: 1.5rem;
+}
+
+.act-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 992px) {
+    .event-banner {
+        flex-direction: column-reverse;
+    }
+
+    .event-bg-image {
+        min-height: 250px;
+    }
+
+    .event-content {
+        padding: 2.5rem 1.5rem;
+    }
+}

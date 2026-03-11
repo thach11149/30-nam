@@ -1,0 +1,104 @@
+﻿
+> landing-page@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+node.exe : ΓÜá The 
+"middleware" file 
+convention is 
+deprecated. Please use 
+"proxy" instead. Learn 
+more: https://nextjs.or
+g/docs/messages/middlew
+are-to-proxy
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (ΓÜá The "midd   
+ le...leware-to-pro    
+xy:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 35.3s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+Error: Failed to 
+collect configuration 
+for /studio/[[...tool]]
+    at ignore-listed 
+frames {
+  [cause]: TypeError: 
+(0 , bU.createContext) 
+is not a function
+      at 
+instantiateModule (D:\3
+0nam\landing-page\.next
+\server\chunks\ssr\[tur
+bopack]_runtime.js:740:
+9)
+      at getOrInstantia
+teModuleFromParent (D:\
+30nam\landing-page\.nex
+t\server\chunks\ssr\[tu
+rbopack]_runtime.js:763
+:12)
+      at 
+Context.esmImport [as 
+i] (D:\30nam\landing-pa
+ge\.next\server\chunks\
+ssr\[turbopack]_runtime
+.js:228:20)
+      at module 
+evaluation (D:\30nam\la
+nding-page\.next\server
+\chunks\ssr\[root-of-th
+e-server]__54d02fb6._.j
+s:1:2235)
+      at 
+instantiateModule (D:\3
+0nam\landing-page\.next
+\server\chunks\ssr\[tur
+bopack]_runtime.js:740:
+9)
+      at getOrInstantia
+teModuleFromParent (D:\
+30nam\landing-page\.nex
+t\server\chunks\ssr\[tu
+rbopack]_runtime.js:763
+:12)
+      at 
+Context.esmImport [as 
+i] (D:\30nam\landing-pa
+ge\.next\server\chunks\
+ssr\[turbopack]_runtime
+.js:228:20)
+      at module 
+evaluation (D:\30nam\la
+nding-page\.next\server
+\chunks\ssr\_aace6d72._
+.js:1:63)
+}
+
+> Build error occurred
+Error: Failed to 
+collect page data for 
+/studio/[[...tool]]
+    at ignore-listed 
+frames {
+  type: 'Error'
+}

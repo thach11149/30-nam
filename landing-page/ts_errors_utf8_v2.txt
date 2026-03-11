@@ -1,0 +1,4 @@
+﻿sanity.config.ts(3,28): error TS2307: Cannot find module '@sanity/vision' or its corresponding type declarations.
+src/sanity/schema.ts(3,30): error TS2307: Cannot find module './galleryImage' or its corresponding type declarations.
+src/sanity/schema.ts(4,31): error TS2307: Cannot find module './timelineEvent' or its corresponding type declarations.
+src/sanity/schema.ts(5,29): error TS2307: Cannot find module './testimonial' or its corresponding type declarations.

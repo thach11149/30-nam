@@ -1,0 +1,939 @@
+:root {
+    --v26-bg: #e5d4b1;
+    --v26-red: #8a131a;
+    --v26-gold-1: #b8860b;
+    --v26-gold-2: #f9e498;
+    --v26-gold-3: #9b7e3d;
+    --v26-slate: #0f172a;
+    --v26-slate-700: #334155;
+    --v26-slate-500: #64748b;
+}
+
+/*
+    Font configuration for Vision2026
+    - Edit this block to change fonts used by the component.
+    - Example Google Fonts import (uncomment to use):
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700;900&display=swap');
+
+    - Example local @font-face (uncomment and adjust paths):
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('/fonts/MyCustomFont.woff2') format('woff2');
+            font-weight: 300 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+    Default variable used across this CSS. Change to point to your preferred font-family.
+*/
+:root {
+        --v26-font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.vision2026 {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    background: var(--v26-bg);
+    color: var(--v26-slate);
+    padding: 6rem 1.5rem;
+    font-family: var(--v26-font);
+}
+
+.vision2026-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.vision2026-texture {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    mix-blend-mode: multiply;
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+}
+
+.vision2026-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(140px);
+}
+
+.vision2026-orb--gold {
+    width: 80vw;
+    height: 80vw;
+    top: -10%;
+    right: -25%;
+    background: rgba(250, 204, 21, 0.2);
+}
+
+.vision2026-orb--wine {
+    width: 60vw;
+    height: 60vw;
+    left: -20%;
+    bottom: -20%;
+    background: rgba(138, 19, 26, 0.13);
+}
+
+.vision2026-watermark-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.08;
+    user-select: none;
+}
+
+.vision2026-watermark {
+    font-size: clamp(10rem, 42vw, 40rem);
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: -0.08em;
+    color: #b8860b;
+    line-height: 0.8;
+}
+
+.vision2026-container {
+    position: relative;
+    z-index: 1;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.vision2026-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-bottom: 7rem;
+    border-left: 14px solid var(--v26-red);
+    padding-left: 3rem;
+}
+
+.vision2026-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.vision2026-badge-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #fff;
+    background: var(--v26-red);
+    border-radius: 9999px;
+    padding: 0.5rem;
+    box-shadow: 0 14px 30px rgba(138, 19, 26, 0.3);
+}
+
+.vision2026-badge-text {
+    font-size: 0.875rem;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: var(--v26-red);
+}
+
+.vision2026-title {
+    position: relative;
+    margin: 0;
+    font-size: clamp(4rem, 12vw, 6.5rem);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: transparent;
+    background: linear-gradient(#f3c546 0%, #721111 40%, #cea944 50%, #bb9b49 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* text-shadow: 0 18px 50px rgba(0, 0, 0, 0.22); */
+    padding: 50px 0;
+}
+
+.vision2026-title::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: skewX(-20deg);
+    animation: vision2026-shimmer-title 4s linear infinite;
+    pointer-events: none;
+}
+
+.vision2026-title-accent-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.vision2026-title-accent {
+    position: absolute;
+    left: 0;
+    bottom: -1.5rem;
+    width: 100%;
+    height: 0.75rem;
+    opacity: 0.2;
+    filter: blur(4px);
+    background: linear-gradient(to right, var(--v26-red), transparent);
+}
+
+.vision2026-header-note {
+    max-width: 20rem;
+    padding-top: 1.5rem;
+}
+
+.vision2026-note-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--v26-red);
+}
+
+.vision2026-note-top::before {
+    content: "";
+    width: 5rem;
+    height: 4px;
+    background: var(--v26-red);
+}
+
+.vision2026-note-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.vision2026-note-label {
+    font-size: 0.875rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.vision2026-note-title {
+    margin: 1.75rem 0 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid rgba(138, 19, 26, 0.2);
+    color: #0f172a;
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1.2;
+}
+
+.vision2026-note-desc {
+    margin: 0;
+    color: rgba(51, 65, 85, 0.85);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.vision2026-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 9rem;
+}
+
+.vision2026-pillar {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4rem;
+    padding: 3.5rem;
+    border: 2px solid #fff;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.06);
+    transition: transform 0.6s cubic-bezier(.2,.9,.2,1), box-shadow 0.6s ease;
+}
+
+.vision2026-pillar:hover {
+    transform: translateY(-1.25rem);
+    box-shadow: 0 50px 100px rgba(138, 19, 26, 0.15);
+}
+
+.vision2026-pillar-index {
+    position: absolute;
+    right: -2rem;
+    bottom: -3rem;
+    font-size: 11rem;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1;
+    color: rgba(184, 134, 11, 0.05);
+    transition: color 0.35s ease, transform 0.45s ease;
+}
+
+.vision2026-pillar:hover .vision2026-pillar-index {
+    color: rgba(138, 19, 26, 0.07);
+}
+
+.vision2026-pillar-icon-wrap {
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.8rem;
+    background: var(--v26-red);
+    margin-bottom: 2.5rem;
+    box-shadow: 0 24px 40px rgba(138, 19, 26, 0.35);
+    transition: transform 0.4s ease;
+}
+
+.vision2026-pillar:hover .vision2026-pillar-icon-wrap {
+    transform: rotate(6deg);
+}
+
+.vision2026-pillar-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #f9e498;
+}
+
+.vision2026-pillar-tag-wrap {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: 0.375rem 1rem;
+    background: rgba(138, 19, 26, 0.05);
+    border-radius: 9999px;
+    border: 1px solid rgba(138, 19, 26, 0.1);
+}
+
+.vision2026-pillar-tag {
+    font-size: 0.6875rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--v26-red);
+}
+
+.vision2026-pillar-title {
+    margin: 0 0 1.5rem;
+    color: #0f172a;
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.vision2026-pillar:hover .vision2026-pillar-title {
+    color: var(--v26-red);
+}
+
+.vision2026-pillar-desc {
+    margin: 0;
+    color: #334155;
+    font-size: 1rem;
+    line-height: 1.65;
+    font-weight: 700;
+}
+
+.vision2026-roadmap {
+    position: relative;
+    margin-bottom: 9rem;
+    padding: 4rem;
+    border-radius: 4.5rem;
+    background: #fff;
+    border: 2px solid #fff;
+    box-shadow: 0 32px 80px rgba(113, 63, 18, 0.12);
+}
+
+.vision2026-roadmap-head {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 2px solid rgba(234, 179, 8, 0.1);
+}
+
+.vision2026-roadmap-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.vision2026-roadmap-icon-wrap {
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: #0f172a;
+    border: 2px solid #b8860b;
+    box-shadow: 0 16px 35px rgba(15, 23, 42, 0.25);
+}
+
+.vision2026-roadmap-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    color: #f9e498;
+}
+
+.vision2026-roadmap-title {
+    margin: 0 0 0.75rem;
+    color: #0f172a;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    line-height: 1;
+}
+
+.vision2026-roadmap-subtitle {
+    margin: 0;
+    color: #b8860b;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+}
+
+.vision2026-standard-pill {
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    width: fit-content;
+    padding: 0.55rem 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(138, 19, 26, 0.1);
+    background: rgba(138, 19, 26, 0.05);
+}
+
+.vision2026-standard-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--v26-red);
+}
+
+.vision2026-standard-text {
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--v26-red);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 900;
+}
+
+.vision2026-quarters {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.vision2026-quarters::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, rgba(184, 134, 11, 0.2), transparent);
+    display: none;
+}
+
+.vision2026-quarter {
+    position: relative;
+    z-index: 1;
+    border: 2px solid #f1f5f9;
+    border-radius: 3rem;
+    background: #f8fafc;
+    padding: 2.5rem;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease, border-color 0.5s ease, opacity 0.5s ease;
+}
+
+.vision2026-quarter.is-active {
+    opacity: 1;
+    background: var(--v26-red);
+    border-color: var(--v26-red);
+    transform: scale(1.05);
+    box-shadow: 0 40px 80px rgba(138, 19, 26, 0.3);
+}
+
+.vision2026-quarter-q {
+    margin-bottom: 2rem;
+    font-size: 4.5rem;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -0.06em;
+    color: #cbd5e1;
+    transition: color 0.4s ease;
+}
+
+.vision2026-quarter.is-active .vision2026-quarter-q {
+    color: #f9e498;
+}
+
+.vision2026-quarter-event {
+    margin: 0 0 1.5rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 900;
+    color: #1e293b;
+    transition: color 0.4s ease;
+}
+
+.vision2026-quarter.is-active .vision2026-quarter-event {
+    color: #fff;
+}
+
+.vision2026-quarter-theme {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 9999px;
+    background: #e2e8f0;
+    padding: 0.375rem 1rem;
+    transition: background 0.4s ease;
+}
+
+.vision2026-quarter.is-active .vision2026-quarter-theme {
+    background: rgba(234, 179, 8, 0.2);
+}
+
+.vision2026-quarter-star {
+    width: 1rem;
+    height: 1rem;
+    color: #94a3b8;
+    transition: color 0.4s ease;
+}
+
+.vision2026-quarter.is-active .vision2026-quarter-star {
+    color: #eab308;
+    fill: currentColor;
+}
+
+.vision2026-quarter-theme-text {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #64748b;
+    font-weight: 900;
+    transition: color 0.4s ease;
+}
+
+.vision2026-quarter.is-active .vision2026-quarter-theme-text {
+    color: #fde68a;
+}
+
+.vision2026-cta-shell {
+    border-radius: 5rem;
+    padding: 2px;
+    background: linear-gradient(to right, var(--v26-gold-1), var(--v26-gold-2), var(--v26-gold-3));
+    box-shadow: 0 50px 100px rgba(138, 19, 26, 0.2);
+}
+
+.vision2026-cta-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4.8rem;
+    background: #faf9f6;
+    padding: 3.5rem 2rem;
+}
+
+.vision2026-cta-orb {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    right: -2rem;
+    top: -3rem;
+    border-radius: 9999px;
+    filter: blur(100px);
+    background: rgba(138, 19, 26, 0.08);
+}
+
+.vision2026-cta-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 3rem;
+}
+
+.vision2026-cta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(138, 19, 26, 0.2);
+    background: rgba(138, 19, 26, 0.05);
+    margin-bottom: 1rem;
+}
+
+.vision2026-cta-tag-icon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--v26-red);
+}
+
+.vision2026-cta-tag-text {
+    font-size: 0.6875rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--v26-red);
+}
+
+.vision2026-cta-title {
+    margin: 0 0 1rem;
+    color: #0f172a;
+    font-size: clamp(2.8rem, 9vw, 6rem);
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+}
+
+.vision2026-cta-title-red {
+    color: var(--v26-red);
+}
+
+.vision2026-cta-desc {
+    margin: 0;
+    max-width: 40rem;
+    color: #475569;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.vision2026-cta-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.vision2026-cta-primary {
+    position: relative;
+    overflow: hidden;
+    height: 3.2rem;
+    border: 0;
+    border-radius: 1rem;
+    padding: 0 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #3d2e10;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    box-shadow: 0 15px 35px rgba(184, 134, 11, 0.45);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.vision2026-cta-primary:active {
+    transform: scale(0.96);
+}
+
+.vision2026-sweep {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateX(-105%) skewX(12deg);
+    transition: transform 1s ease;
+}
+
+.vision2026-cta-primary:hover .vision2026-sweep {
+    transform: translateX(105%) skewX(12deg);
+}
+
+.vision2026-shimmer {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+    animation: vision2026-shimmer 2.5s infinite;
+}
+
+.vision2026-cta-primary-icon {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+    position: relative;
+    z-index: 1;
+}
+
+.vision2026-cta-primary-text {
+    font-size: 0.6875rem;
+    position: relative;
+    z-index: 1;
+}
+
+.vision2026-cta-primary-arrow {
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.2s ease;
+}
+
+.vision2026-cta-primary:hover .vision2026-cta-primary-arrow {
+    transform: translate(2px, -2px);
+}
+
+.vision2026-cta-secondary {
+    height: 3rem;
+    border-radius: 1rem;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #1e293b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 1.25rem;
+    font-size: 0.6875rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.vision2026-cta-secondary:hover {
+    color: var(--v26-red);
+    border-color: var(--v26-red);
+}
+
+.vision2026-cta-secondary-arrow {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.vision2026-cta-secondary:hover .vision2026-cta-secondary-arrow {
+    transform: translateX(4px);
+}
+
+@keyframes vision2026-shimmer {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes vision2026-shimmer-title {
+    0% {
+        transform: translateX(-150%) skewX(-20deg);
+    }
+    100% {
+        transform: translateX(150%) skewX(-20deg);
+    }
+}
+
+@media (min-width: 768px) {
+    .vision2026 {
+        padding: 6rem 2.5rem;
+    }
+
+    .vision2026-pillars {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vision2026-quarters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vision2026-cta-card {
+        padding: 4rem 3rem;
+    }
+
+    .vision2026-roadmap {
+        padding: 3.2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .vision2026 {
+        padding: 6rem 3rem;
+    }
+
+    .vision2026-header {
+        flex-direction: row;
+    }
+
+    .vision2026-pillars {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 3rem;
+    }
+
+    .vision2026-roadmap-head {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .vision2026-standard-pill {
+        display: inline-flex;
+    }
+
+    .vision2026-quarters {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 2.5rem;
+    }
+
+    .vision2026-quarters::before {
+        display: none;
+    }
+
+    .vision2026-quarter.is-active {
+        transform: scale(1.1);
+    }
+
+    .vision2026-cta-grid {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .vision2026-cta-actions {
+        width: auto;
+        gap: 2rem;
+    }
+
+    .vision2026-cta-primary {
+        height: 9rem;
+        border-radius: 3rem;
+        padding: 0 6rem;
+        gap: 1.5rem;
+        font-size: 1.125rem;
+    }
+
+    .vision2026-cta-primary-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .vision2026-cta-primary-text {
+        font-size: 1.125rem;
+        letter-spacing: 0.3em;
+    }
+
+    .vision2026-cta-primary-arrow {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    .vision2026-cta-secondary {
+        height: 6.5rem;
+        border-radius: 2.5rem;
+        border-width: 4px;
+        padding: 0 5rem;
+        gap: 1.25rem;
+        font-size: 0.95rem;
+        letter-spacing: 0.28em;
+        box-shadow: 0 28px 48px rgba(15, 23, 42, 0.12);
+    }
+
+    .vision2026-cta-secondary-arrow {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .vision2026 {
+        padding: 4.5rem 1rem;
+    }
+
+    .vision2026-header {
+        border-left-width: 8px;
+        padding-left: 1rem;
+        margin-bottom: 4.5rem;
+    }
+
+    .vision2026-badge-text {
+        letter-spacing: 0.2em;
+    }
+
+    .vision2026-note-top::before {
+        width: 3rem;
+    }
+
+    .vision2026-pillar {
+        border-radius: 2rem;
+        padding: 1.5rem;
+    }
+
+    .vision2026-pillar-title {
+        font-size: 1.3rem;
+    }
+
+    .vision2026-roadmap {
+        margin-bottom: 4.5rem;
+        padding: 1.5rem;
+        border-radius: 2rem;
+    }
+
+    .vision2026-roadmap-title {
+        font-size: 1.25rem;
+        letter-spacing: 0.16em;
+    }
+
+    .vision2026-roadmap-subtitle {
+        letter-spacing: 0.14em;
+    }
+
+    .vision2026-quarter {
+        border-radius: 1.5rem;
+        padding: 1.2rem;
+    }
+
+    .vision2026-quarter-q {
+        font-size: 2.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .vision2026-quarter-event {
+        font-size: 1rem;
+    }
+
+    .vision2026-cta-shell {
+        border-radius: 2rem;
+    }
+
+    .vision2026-cta-card {
+        border-radius: calc(2rem - 2px);
+        padding: 1.5rem;
+    }
+
+    .vision2026-cta-title {
+        font-size: clamp(2rem, 12vw, 2.8rem);
+    }
+
+    .vision2026-cta-desc {
+        font-size: 0.95rem;
+    }
+
+    .vision2026-title-type-2 {
+        color: red!important;
+    }
+}
+
+/* Ensure type-2 variant forces a visible fill color on all breakpoints */
+.vision2026-title-type-2 {
+    color: var(--v26-red) !important;
+    -webkit-text-fill-color: var(--v26-red) !important;
+    /* if outline/stroke present, also set stroke color fallback */
+    -webkit-text-stroke-color: var(--v26-red);
+    text-stroke-color: var(--v26-red);
+}

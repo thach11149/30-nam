@@ -1,0 +1,130 @@
+.ebook-section {
+    background-color: var(--c-bg-light);
+}
+
+.ebook-card {
+    display: flex;
+    background-color: var(--c-bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.ebook-image {
+    flex: 1;
+    background-color: var(--c-bg-dark);
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ebook-mockup {
+    width: 240px;
+    height: 340px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.5), inset 3px 0 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transform: perspective(600px) rotateY(15deg);
+    transition: transform 0.5s;
+}
+
+.ebook-image:hover .ebook-mockup {
+    transform: perspective(600px) rotateY(5deg);
+}
+
+.ebook-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #A81B26, #6b0c15);
+    color: #fff;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.ebook-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.ebook-gold-line {
+    height: 2px;
+    background-color: var(--c-gold);
+    width: 50%;
+    margin: 0 auto 1rem;
+}
+
+.ebook-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+.ebook-year {
+    margin-top: auto;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--c-gold);
+}
+
+.ebook-info {
+    flex: 1.5;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ebook-info h2 {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    margin-bottom: 1rem;
+}
+
+.ebook-desc {
+    color: var(--c-text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.ebook-features {
+    list-style: none;
+    margin-bottom: 2.5rem;
+}
+
+.ebook-features li {
+    margin-bottom: 0.8rem;
+    color: var(--c-text-primary);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ebook-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+    .ebook-card {
+        flex-direction: column;
+    }
+
+    .ebook-info {
+        padding: 2rem;
+    }
+}

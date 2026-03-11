@@ -1,0 +1,37 @@
+{
+    "navigation": {
+        "timeline": "Hành Trình 30 Năm",
+        "event": "Lễ Công Bố 2026",
+        "sponsor": "Đồng Hành"
+    },
+    "hero": {
+        "years": "1996 - 2026",
+        "title1": "30 NĂM HÀNG VIỆT NAM CHẤT LƯỢNG CAO",
+        "title2": "TỰ HÀO & TIẾP NỐI",
+        "desc": "Một hành trình được xây dựng bằng niềm tin người tiêu dùng và bản lĩnh doanh nghiệp Việt.",
+        "cta_timeline": "Xem hành trình 30 năm",
+        "cta_event": "Tham dự / Đồng hành"
+    },
+    "core_values": {
+        "section_title": "Giá Trị Cốt Lõi",
+        "section_subtitle": "Định hướng xuyên suốt 3 thập kỷ",
+        "v1_title": "Trao quyền cho người tiêu dùng",
+        "v1_desc": "Chương trình tiên phong trao quyền cho người tiêu dùng trực tiếp đánh giá và lựa chọn doanh nghiệp xứng đáng, thiết lập một thước đo khách quan nhất cho chất lượng.",
+        "v1_unit": "lần khảo sát toàn quốc",
+        "v2_title": "Hệ sinh thái đồng hành",
+        "v2_desc": "Từ một cuộc bình chọn, HVNCLC đã phát triển thành một hệ sinh thái hỗ trợ doanh nghiệp mạnh mẽ với các hoạt động xúc tiến thương mại, hội chợ và kết nối sâu rộng.",
+        "v2_unit": "hội chợ & phiên chợ",
+        "v3_title": "Tiên phong hội nhập & chuyển đổi xanh",
+        "v3_desc": "Liên tục cập nhật chuẩn hội nhập quốc tế, xây dựng tiêu chuẩn 'Chuẩn Xanh' và số hóa hoạt động để đồng hành cùng doanh nghiệp phát triển bền vững.",
+        "v3_unit": "chương trình Go Global"
+    },
+    "footer": {
+        "desc": "Hành trình 30 năm Tự hào và Tiếp nối (1996 - 2026). Một hệ sinh thái đồng hành cùng doanh nghiệp Việt vươn tầm thế giới.",
+        "contact_title": "Thông Tin Liên Hệ",
+        "org": "Ban Tổ Chức: Hiệp Hội Doanh Nghiệp Hàng Việt Nam Chất Lượng Cao",
+        "links_title": "Liên Kết Nhanh",
+        "link1": "Hành Trình Lịch Sử",
+        "link2": "Tài Liệu Kỷ Yếu 30 Năm",
+        "copyright": "© 2026 Hiệp Hội Doanh Nghiệp Hàng Việt Nam Chất Lượng Cao. All rights reserved."
+    }
+}

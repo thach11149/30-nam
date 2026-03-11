@@ -1,0 +1,261 @@
+import React, { useState } from 'react';
+import { 
+  Globe, 
+  Users, 
+  Zap, 
+  Calendar, 
+  ArrowUpRight, 
+  MessageSquare, 
+  Award,
+  ChevronRight,
+  TrendingUp,
+  GanttChart,
+  Sparkles,
+  ShieldCheck,
+  Star,
+  Target
+} from 'lucide-react';
+
+export default function App() {
+  const [hoveredQuarter, setHoveredQuarter] = useState(null);
+
+  // Hệ màu Gold Metallic cao cấp
+  const goldGradient = "linear-gradient(90deg, #B8860B 0%, #F9E498 50%, #9B7E3D 100%)";
+  
+  // Nâng cấp dải Gold Text để sắc nét hơn trên nền sáng
+  const goldTextSharp = "text-transparent bg-clip-text bg-gradient-to-b from-[#F9E498] via-[#B8860B] to-[#6d511f]";
+
+  const strategyPillars = [
+    {
+      icon: Users,
+      title: "Chuyển sang Hiệp hội",
+      desc: "Nâng tầm cấu trúc tổ chức chuyên nghiệp, gia tăng tối đa quyền lợi thành viên.",
+      tag: "Cơ cấu"
+    },
+    {
+      icon: MessageSquare,
+      title: "Diễn đàn chính sách",
+      desc: "Cầu nối trực tiếp giữa doanh nghiệp và các nhà hoạch định chính sách cấp cao.",
+      tag: "Kết nối"
+    },
+    {
+      icon: GanttChart,
+      title: "Kết nối viện trường",
+      desc: "Ứng dụng nghiên cứu khoa học vào thực tiễn sản xuất của doanh nghiệp Việt.",
+      tag: "Đổi mới"
+    },
+    {
+      icon: Globe,
+      title: "Chuyển đổi xanh – Go Global",
+      desc: "Chuẩn hóa quy trình bền vững để tự tin vươn tầm thị trường quốc tế.",
+      tag: "Vươn xa"
+    }
+  ];
+
+  const quarters = [
+    { q: "Q1", event: "Hội nghị Hiệp hội & Chiến lược 2026", theme: "Nền tảng" },
+    { q: "Q2", event: "Diễn đàn Kinh tế xanh & Xuất khẩu", theme: "Tăng trưởng" },
+    { q: "Q3", event: "Triển lãm Công nghệ & Viện trường", theme: "Đột phá" },
+    { q: "Q4", event: "Grand Gala 30 năm HVNCLC", theme: "Thịnh vượng" }
+  ];
+
+  return (
+    <section className="relative min-h-screen bg-[#E5D4B1] text-slate-900 py-24 px-6 overflow-hidden font-sans">
+      
+      {/* Background Cinematic Texture */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.1] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
+        <div className="absolute top-0 right-0 w-[80vw] h-[80vw] bg-yellow-400/20 rounded-full blur-[180px] -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[60vw] h-[60vw] bg-[#8A131A]/10 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/2" />
+        
+        {/* Large Watermark Number */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-[0.08] select-none pointer-events-none">
+          <span className="text-[42vw] font-black italic tracking-tighter text-[#B8860B]">2026</span>
+        </div>
+      </div>
+
+      <div className="container mx-auto max-w-7xl relative z-10">
+        
+        {/* Header Section: Siêu sắc nét */}
+        <div className="flex flex-col lg:flex-row items-start justify-between mb-28 gap-12 border-l-[14px] border-[#8A131A] pl-12">
+          <div className="max-w-5xl space-y-6">
+            <div className="flex items-center gap-4 animate-in fade-in duration-1000">
+              <div className="w-10 h-10 rounded-full bg-[#8A131A] flex items-center justify-center shadow-lg">
+                 <Target className="w-5 h-5 text-white animate-pulse" />
+              </div>
+              <span className="text-[14px] font-black uppercase tracking-[0.6em] text-[#8A131A] italic">Tầm nhìn Hiệp hội 2026</span>
+            </div>
+            
+            {/* TIÊU ĐỀ ĐƯỢC TỐI ƯU ĐẬM NÉT */}
+            <div className="relative">
+              <h2 className={`text-7xl md:text-9xl lg:text-[130px] font-black leading-[0.8] tracking-tighter italic ${goldTextSharp} drop-shadow-[0_15px_40px_rgba(0,0,0,0.2)]`}
+                  style={{ WebkitTextStroke: '1px rgba(184,134,11,0.2)' }}>
+                2026: KHỞI ĐẦU <br /> 
+                <span className="relative">
+                  VẬN HỘI MỚI.
+                  <div className="absolute -bottom-6 left-0 w-full h-3 bg-gradient-to-r from-[#8A131A] to-transparent opacity-20 blur-md" />
+                </span>
+              </h2>
+              {/* Highlight vạt sáng vàng chạy qua tiêu đề */}
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-transparent via-white/20 to-transparent w-full h-full skew-x-[-20deg] animate-shimmer-title" />
+            </div>
+          </div>
+
+          <div className="lg:max-w-xs space-y-8 pt-6">
+             <div className="flex items-center gap-4 text-[#8A131A]">
+                <div className="w-20 h-[4px] bg-[#8A131A]" />
+                <span className="font-black uppercase tracking-[0.2em] text-sm">Innovation Era</span>
+             </div>
+             <p className="text-slate-900 text-2xl leading-tight font-black italic border-b-2 border-[#8A131A]/20 pb-8">
+               Tăng tốc - Chuẩn hóa - Toàn cầu.
+             </p>
+             <p className="text-slate-700 text-lg font-bold leading-relaxed opacity-80">
+               Chuyển mình để dẫn đầu kỷ nguyên xanh và khẳng định vị thế bền vững.
+             </p>
+          </div>
+        </div>
+
+        {/* Strategy Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-36">
+          {strategyPillars.map((pillar, idx) => (
+            <div 
+              key={idx}
+              className="group relative p-12 rounded-[3.5rem] bg-white/60 border-2 border-white backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_50px_100px_rgba(138,19,26,0.15)] transition-all duration-700 hover:-translate-y-5"
+            >
+              <div className="absolute -bottom-8 -right-4 text-[9rem] font-black text-[#B8860B]/5 italic group-hover:text-[#8A131A]/5 transition-colors">
+                {idx + 1}
+              </div>
+              
+              <div className="w-20 h-20 rounded-[1.8rem] bg-[#8A131A] flex items-center justify-center mb-10 shadow-2xl group-hover:rotate-6 transition-transform">
+                <pillar.icon className="w-10 h-10 text-[#F9E498]" />
+              </div>
+
+              <div className="mb-6 inline-block px-4 py-1.5 bg-[#8A131A]/5 rounded-full border border-[#8A131A]/10 shadow-sm">
+                 <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#8A131A]">{pillar.tag}</span>
+              </div>
+              
+              <h3 className="text-2xl font-black uppercase tracking-tight mb-6 text-slate-900 group-hover:text-[#8A131A] transition-colors leading-tight">
+                {pillar.title}
+              </h3>
+              
+              <p className="text-base text-slate-700 leading-relaxed font-bold">
+                {pillar.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Quarterly Roadmap: Bordeaux Red Hover */}
+        <div className="relative mb-36 p-16 rounded-[4.5rem] bg-white border-2 border-white shadow-2xl shadow-yellow-900/10">
+           <div className="flex flex-col md:flex-row md:items-center justify-between gap-10 mb-20 border-b-2 border-yellow-500/10 pb-12">
+              <div className="flex items-center gap-8">
+                <div className="w-20 h-20 rounded-full bg-slate-900 flex items-center justify-center shadow-xl border-2 border-[#B8860B]">
+                  <Calendar className="w-9 h-9 text-[#F9E498]" />
+                </div>
+                <div>
+                  <h4 className="text-2xl font-black uppercase tracking-[0.5em] text-slate-900 leading-none mb-3">ROADMAP 2026</h4>
+                  <p className="text-[12px] font-bold text-[#B8860B] uppercase tracking-[0.4em]">Chiến lược hành động theo quý</p>
+                </div>
+              </div>
+              <div className="hidden lg:flex items-center gap-3 px-6 py-2 bg-[#8A131A]/5 rounded-xl border border-[#8A131A]/10">
+                 <ShieldCheck className="w-5 h-5 text-[#8A131A]" />
+                 <span className="text-[12px] font-black text-[#8A131A] uppercase tracking-widest leading-none">Global Standard</span>
+              </div>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+              <div className="absolute top-1/2 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#B8860B]/20 to-transparent hidden md:block" />
+              
+              {quarters.map((q, idx) => (
+                <div 
+                  key={idx}
+                  onMouseEnter={() => setHoveredQuarter(idx)}
+                  className={`relative p-10 rounded-[3rem] transition-all duration-500 group cursor-pointer border-2 ${
+                    hoveredQuarter === idx 
+                    ? 'bg-[#8A131A] border-[#8A131A] scale-110 z-20 shadow-[0_40px_80px_rgba(138,19,26,0.3)]' 
+                    : 'bg-slate-50 border-slate-100 opacity-60'
+                  }`}
+                >
+                  <div className={`text-7xl font-black mb-8 italic tracking-tighter transition-colors ${hoveredQuarter === idx ? 'text-[#F9E498]' : 'text-slate-300'}`}>
+                    {q.q}
+                  </div>
+                  <h5 className={`font-black text-2xl mb-6 tracking-tight leading-tight transition-colors ${hoveredQuarter === idx ? 'text-white' : 'text-slate-800'}`}>
+                    {q.event}
+                  </h5>
+                  <div className={`inline-flex items-center gap-3 px-4 py-1.5 rounded-full transition-colors ${hoveredQuarter === idx ? 'bg-yellow-500/20' : 'bg-slate-200'}`}>
+                     <Star className={`w-4 h-4 ${hoveredQuarter === idx ? 'text-yellow-500 fill-current' : 'text-slate-400'}`} />
+                     <span className={`text-[10px] font-black uppercase tracking-widest ${
+                       hoveredQuarter === idx ? 'text-yellow-400' : 'text-slate-500'
+                     }`}>
+                       {q.theme}
+                     </span>
+                  </div>
+                </div>
+              ))}
+           </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="relative p-2 rounded-[5rem] bg-gradient-to-r from-[#B8860B] via-[#F9E498] to-[#9B7E3D] shadow-[0_50px_100px_rgba(138,19,26,0.2)]">
+           <div className="relative bg-[#FAF9F6] rounded-[4.8rem] p-16 md:p-24 flex flex-col lg:flex-row items-center justify-between gap-16 overflow-hidden">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-[#8A131A]/5 rounded-full blur-[100px]" />
+              
+              <div className="max-w-3xl text-center lg:text-left relative z-10 space-y-10">
+                <div className="flex items-center gap-4 justify-center lg:justify-start">
+                   <Award className="w-8 h-8 text-[#8A131A]" />
+                   <span className="text-[14px] font-black uppercase tracking-[0.5em] text-[#8A131A]">Join the Future 2026</span>
+                </div>
+                <h4 className="text-6xl md:text-8xl font-black italic tracking-tighter text-slate-900 leading-[0.9]">
+                  KHƠI DẬY <br /> 
+                  <span className="text-[#8A131A]">TIỀM LỰC VIỆT.</span>
+                </h4>
+                <p className="text-slate-700 font-bold text-2xl leading-relaxed max-w-xl italic border-l-4 border-[#8A131A] pl-8">
+                  Trở thành đối tác chiến lược để cùng kiến tạo chu kỳ phát triển bền vững.
+                </p>
+              </div>
+              
+              <div className="flex flex-col gap-8 w-full lg:w-auto relative z-10">
+                 <button 
+                   className="group relative h-28 px-20 rounded-[2.5rem] overflow-hidden flex items-center justify-center gap-5 transition-all active:scale-95 shadow-[0_25px_60px_rgba(184,134,11,0.5)]"
+                   style={{ background: goldGradient }}
+                 >
+                   <div className="absolute inset-0 bg-white/50 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 skew-x-12" />
+                   <div className="absolute inset-0 shimmer-effect pointer-events-none" />
+                   
+                   <Zap className="w-8 h-8 text-[#3d2e10] fill-current" />
+                   <span className="text-[#3d2e10] font-black uppercase tracking-[0.3em] text-lg">Đồng hành tài trợ</span>
+                   <ArrowUpRight className="w-7 h-7 text-[#3d2e10] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                 </button>
+
+                 <button className="group h-24 px-20 rounded-[2.5rem] border-4 border-slate-200 bg-white hover:border-[#8A131A] transition-all duration-700 flex items-center justify-center gap-5 shadow-2xl">
+                   <span className="font-black uppercase tracking-[0.3em] text-sm text-slate-800 group-hover:text-[#8A131A]">Liên hệ Ban Tổ chức</span>
+                   <ChevronRight className="w-7 h-7 text-slate-300 group-hover:text-[#8A131A] group-hover:translate-x-2 transition-all" />
+                 </button>
+              </div>
+           </div>
+        </div>
+
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); opacity: 0; }
+          50% { opacity: 0.8; }
+          100% { transform: translateX(100%); opacity: 0; }
+        }
+        @keyframes shimmer-title {
+          0% { transform: translateX(-150%) skewX(-20deg); }
+          100% { transform: translateX(150%) skewX(-20deg); }
+        }
+        .shimmer-effect {
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+          animation: shimmer 2.5s infinite;
+        }
+        .animate-shimmer-title {
+          animation: shimmer-title 4s linear infinite;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+      `}} />
+    </section>
+  );
+}

@@ -1,0 +1,30 @@
+.pt-header {
+    padding-top: 80px;
+}
+
+.subpage-hero {
+    padding: 8rem 0 4rem;
+    background: linear-gradient(135deg, var(--c-bg-dark), #3a0d11);
+    color: var(--c-text-inverse);
+    margin-bottom: 0;
+}
+
+.subpage-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.subpage-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    font-family: var(--font-sans);
+    letter-spacing: 1px;
+}
+
+.bg-card {
+    background-color: var(--c-bg-card);
+}
+
+.w-100 {
+    width: 100%;
+}

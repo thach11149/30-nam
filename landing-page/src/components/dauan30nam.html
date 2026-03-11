@@ -1,0 +1,209 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  ShieldCheck,
+  Plus,
+  Compass,
+  Zap,
+  Star,
+  Award,
+  Trophy,
+  Map,
+  Users2,
+  ThumbsUp,
+  Sparkles
+} from 'lucide-react';
+
+/**
+ * Hook đếm số động với hiệu ứng EaseOut tinh tế
+ */
+const useCountUp = (end, duration = 2500, isStarted = false) => {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    if (!isStarted) return;
+    
+    let startTime = null;
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      
+      // EaseOutQuart: Hiệu ứng chậm dần mượt mà
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      setCount(Math.floor(easeOutQuart * end));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  }, [end, duration, isStarted]);
+  
+  return count;
+};
+
+export default function App() {
+  const [startStats, setStartStats] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setStartStats(true);
+      },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Hệ màu Gold Metallic cao cấp từ ảnh mẫu
+  const goldText = "text-transparent bg-clip-text bg-gradient-to-b from-[#F9E498] via-[#B8860B] to-[#7d5e1a]";
+  const bordeauxRed = "#8A131A";
+
+  const milestoneData = [
+    { label: "Năm bình chọn", value: 30, suffix: "", sub: "Heritage of Trust", icon: Trophy },
+    { label: "Doanh nghiệp", value: 1000, suffix: "+", sub: "Elite Community", icon: Award },
+    { label: "Tỉnh thành", value: 63, suffix: "", sub: "National Reach", icon: Map },
+    { label: "Hội chợ", value: 300, suffix: "+", sub: "Trade Excellence", icon: Users2 },
+    { label: "Lá phiếu tin cậy", value: 12, suffix: "M+", sub: "Consumer Voice", icon: ThumbsUp },
+  ];
+
+  return (
+    <section 
+      ref={sectionRef} 
+      className="relative min-h-screen bg-[#FAF9F6] py-32 px-6 overflow-hidden flex flex-col justify-center font-sans selection:bg-[#8A131A] selection:text-white"
+      id="dau-an-30-nam"
+    >
+      {/* Background Architectural Grid */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03]">
+        <div className="absolute inset-0" 
+             style={{ 
+               backgroundImage: `linear-gradient(to right, ${bordeauxRed} 1px, transparent 1px), linear-gradient(to bottom, ${bordeauxRed} 1px, transparent 1px)`, 
+               backgroundSize: '120px 120px' 
+             }} />
+      </div>
+      
+      {/* Decorative Branding Line */}
+      <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-[#8A131A]/10 to-transparent pointer-events-none" />
+
+      <div className="container mx-auto max-w-[1600px] relative z-10">
+        
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-32 lg:mb-48 gap-12 border-l-[12px] border-[#8A131A] pl-10">
+          <div className="relative">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-10 h-10 rounded-full bg-[#8A131A] flex items-center justify-center shadow-lg">
+                 <Sparkles className="w-5 h-5 text-yellow-400" />
+              </div>
+              <span className="text-[12px] font-black uppercase tracking-[0.5em] text-[#8A131A]">Official Heritage Archive</span>
+            </div>
+            <h2 className={`text-6xl md:text-8xl lg:text-[110px] xl:text-[130px] font-black tracking-tighter italic leading-none pb-4 ${goldText} drop-shadow-2xl`}
+                style={{ WebkitTextStroke: '1px rgba(184,134,11,0.2)' }}>
+              DẤU ẤN 30 NĂM.
+            </h2>
+          </div>
+          
+          <div className="max-w-[350px] pb-8 border-b-[4px] border-[#8A131A]">
+             <p className="text-slate-800 text-sm md:text-lg font-bold uppercase tracking-widest leading-relaxed italic opacity-80">
+               Ba thập kỷ chuẩn hóa giá trị Việt, kết nối niềm tin và kiến tạo chuẩn mực toàn cầu.
+             </p>
+          </div>
+        </div>
+
+        {/* High-Jewelry Stats Grid - Tăng gap và tối ưu padding để tránh lấn dấu + */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-24 gap-x-16 xl:gap-x-24">
+          {milestoneData.map((item, idx) => {
+            const animatedValue = useCountUp(item.value, 3000, startStats);
+            return (
+              <div 
+                key={idx} 
+                className={`relative group transition-all duration-1000 ${startStats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                style={{ transitionDelay: `${idx * 0.1}s` }}
+              >
+                {/* Visual Label (Icon & Index) */}
+                <div className="mb-10 flex items-center justify-between">
+                   <div className="w-10 h-10 rounded-full border border-[#8A131A]/10 flex items-center justify-center group-hover:bg-[#8A131A] group-hover:border-[#8A131A] transition-all duration-500 shadow-sm">
+                      <item.icon className="w-5 h-5 text-[#8A131A] group-hover:text-white transition-colors" />
+                   </div>
+                   <span className="text-[10px] font-mono text-slate-300 tracking-widest font-bold">SEC_0{idx + 1}</span>
+                </div>
+
+                {/* Metric - Tăng PR-12 để dấu + không lấn sân cột khác */}
+                <div className="relative mb-8 overflow-visible">
+                  <span 
+                    className={`text-7xl md:text-[75px] xl:text-[90px] font-black tracking-normal italic leading-none inline-block ${goldText} pr-12`}
+                    style={{ 
+                      WebkitTextStroke: '1px rgba(255, 245, 209, 0.3)',
+                    }}
+                  >
+                    {startStats ? animatedValue.toLocaleString() : '0'}{item.suffix}
+                  </span>
+                  
+                  {/* Glint Light Effect */}
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30 rounded-lg">
+                    <div className="w-[150%] h-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full skew-x-[-25deg] group-hover:animate-glint" />
+                  </div>
+                </div>
+
+                {/* Information Layer */}
+                <div className="space-y-4 relative z-10">
+                  <h4 className="text-[16px] xl:text-[18px] font-black uppercase tracking-[0.2em] text-slate-900 group-hover:text-[#8A131A] transition-colors leading-tight">
+                    {item.label}
+                  </h4>
+                  <div className="h-[3px] w-10 bg-[#8A131A] group-hover:w-full transition-all duration-700 ease-in-out" />
+                  <p className="text-[10px] xl:text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400 italic">
+                    {item.sub}
+                  </p>
+                </div>
+                
+                {/* Background Shadow Interaction */}
+                <div className="absolute -inset-8 bg-white opacity-0 group-hover:opacity-100 -z-10 transition-all duration-500 rounded-[2.5rem] shadow-[0_40px_80px_rgba(138,19,26,0.04)]" />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Footer: Archive Style */}
+        <div className="mt-48 flex flex-col lg:flex-row items-center justify-between pt-16 border-t border-slate-200">
+           <div className="flex items-center gap-8 group">
+              <div className="w-14 h-14 rounded-full bg-[#8A131A]/5 flex items-center justify-center border border-[#8A131A]/10 group-hover:bg-[#8A131A] transition-all">
+                <ShieldCheck className="w-7 h-7 text-[#8A131A] group-hover:text-white" />
+              </div>
+              <div className="text-left">
+                 <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-800 mb-1 leading-none">Verified Statistics</p>
+                 <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">© 2026 Association of High Quality Vietnamese Goods</p>
+              </div>
+           </div>
+           
+           <div className="flex items-center gap-12 mt-10 lg:mt-0 text-[10px] font-black uppercase tracking-[0.6em] text-slate-300">
+              <div className="flex items-center gap-2">
+                 <Plus className="w-3 h-3 text-[#8A131A]" />
+                 <span>Legacy</span>
+              </div>
+              <div className="flex items-center gap-2">
+                 <Plus className="w-3 h-3 text-[#8A131A]" />
+                 <span>Integrity</span>
+              </div>
+              <div className="flex items-center gap-2">
+                 <Plus className="w-3 h-3 text-[#8A131A]" />
+                 <span>Excellence</span>
+              </div>
+           </div>
+        </div>
+
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes glint {
+          0% { transform: translateX(-150%) skewX(-25deg); }
+          100% { transform: translateX(150%) skewX(-25deg); }
+        }
+        .group:hover .animate-glint {
+          animation: glint 0.8s ease-in-out forwards;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+      `}} />
+    </section>
+  );
+}

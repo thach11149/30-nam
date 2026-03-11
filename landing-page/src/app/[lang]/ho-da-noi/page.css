@@ -1,0 +1,22 @@
+.pt-header {
+    padding-top: 80px;
+}
+
+.subpage-hero {
+    padding: var(--space-xl) 0;
+    background: linear-gradient(135deg, var(--c-bg-dark), #1a1a1a);
+    color: var(--c-text-inverse);
+    margin-bottom: 0;
+}
+
+.subpage-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.subpage-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    font-family: var(--font-sans);
+    letter-spacing: 1px;
+}

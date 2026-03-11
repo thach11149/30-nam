@@ -1,0 +1,217 @@
+.pt-header {
+    padding-top: 80px;
+}
+
+.event-hero {
+    position: relative;
+    background: url('https://placehold.co/1200x600/1A1A1A/333') center/cover no-repeat;
+    padding: var(--space-xl) 0;
+    color: #fff;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+}
+
+.event-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(138, 19, 26, 0.8), rgba(0, 0, 0, 0.9));
+}
+
+.event-hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+.event-badge {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border: 1px solid var(--c-gold);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.event-hero-subtitle {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 3rem;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.event-hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.hero-meta-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    text-align: left;
+    backdrop-filter: blur(5px);
+    min-width: 250px;
+}
+
+.meta-icon {
+    font-size: 2rem;
+}
+
+.hero-meta-box div p {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.section-heading {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--c-primary);
+}
+
+.event-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--c-text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.agenda-list {
+    list-style: none;
+    border-left: 2px solid rgba(0, 0, 0, 0.1);
+    padding-left: 0;
+    margin-left: 1rem;
+}
+
+.agenda-list li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.agenda-list li::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--c-primary);
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 2px var(--c-primary);
+}
+
+.agenda-time {
+    font-family: var(--font-serif);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--c-gold-dark);
+    margin-bottom: 0.5rem;
+}
+
+.agenda-desc strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--c-primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.agenda-desc p {
+    color: var(--c-text-secondary);
+    line-height: 1.6;
+}
+
+.sidebar-widget {
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.widget-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.widget-desc {
+    color: var(--c-text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.mb-sm {
+    margin-bottom: 0.5rem;
+}
+
+.mt-lg {
+    margin-top: 3rem;
+}
+
+.mt-md {
+    margin-top: 2rem;
+}
+
+.doc-list {
+    list-style: none;
+}
+
+.doc-list li {
+    margin-bottom: 0.8rem;
+}
+
+.doc-list a {
+    color: #ccc;
+    display: flex;
+    align-items: center;
+}
+
+.doc-list a::before {
+    content: "📄";
+    margin-right: 0.5rem;
+}
+
+.doc-list a:hover {
+    color: var(--c-gold);
+}
+
+/* Responsiveness */
+@media screen and (max-width: 992px) {
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+}

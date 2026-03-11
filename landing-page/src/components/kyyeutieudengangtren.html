@@ -1,0 +1,198 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Download, 
+  BookOpen, 
+  Sparkles, 
+  Zap, 
+  ShieldCheck, 
+  Fingerprint,
+  Maximize2,
+  History,
+  Play,
+  Star,
+  MapPin,
+  ArrowRight,
+  ChevronRight
+} from 'lucide-react';
+
+export default function App() {
+  const [activeChapter, setActiveChapter] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth - 0.5) * 10,
+        y: (e.clientY / window.innerHeight - 0.5) * 10,
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Gold Metallic Gradient chính xác từ ảnh mẫu
+  const goldGradient = "linear-gradient(90deg, #B8860B 0%, #F9E498 50%, #9B7E3D 100%)";
+  const goldText = "text-transparent bg-clip-text bg-gradient-to-b from-[#F9E498] via-[#F9E498] to-[#9B7E3D]";
+
+  const chapters = [
+    { id: "01", title: "Khởi nguồn 1996", tag: "Cốt lõi" },
+    { id: "02", title: "Vượt sóng toàn cầu", tag: "Bản lĩnh" },
+    { id: "03", title: "Kỷ nguyên Xanh", tag: "Tầm nhìn" },
+    { id: "04", title: "Cây đại thụ", tag: "Di sản" }
+  ];
+
+  return (
+    <section className="relative min-h-screen bg-gradient-to-br from-[#3d080a] via-[#8A131A] to-[#4a0a0d] text-white py-20 overflow-hidden font-sans">
+      
+      {/* Background Decor */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-[60vw] h-[60vw] bg-yellow-500/5 rounded-full blur-[150px]" />
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(#F9E498 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+        <div className="absolute bottom-0 right-0 p-20 opacity-[0.05] select-none pointer-events-none">
+          <span className="text-[30vw] font-black italic">30</span>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        
+        {/* TOP HEADER: Title Area (Expanded to fix missing letters) */}
+        <div className="text-center mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 mb-2 animate-in fade-in slide-in-from-bottom duration-1000">
+            <Sparkles className="w-4 h-4 text-yellow-500" />
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-yellow-500/80">Ấn phẩm đặc biệt kỷ niệm 30 năm</span>
+          </div>
+          <h2 className={`text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter italic leading-tight py-4 ${goldText}`}>
+            DI SẢN THƯỢNG HẠNG
+          </h2>
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/60 font-light italic leading-relaxed">
+            Giải mã bản sắc Việt qua 218 trang tư liệu tinh hoa, kết nối quá khứ huy hoàng đến tương lai xanh bền vững.
+          </p>
+        </div>
+
+        {/* MIDDLE: Floating Showcase */}
+        <div className="relative flex flex-col lg:flex-row items-center gap-16 mb-20">
+          
+          {/* LEFT: Foreword Box (Transparent Glass) */}
+          <div className="lg:w-1/4 order-2 lg:order-1">
+            <div className="p-8 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-xl relative group transition-all hover:bg-white/10">
+              <Star className="absolute -top-4 -left-4 w-10 h-10 text-yellow-500 fill-current drop-shadow-lg" />
+              <p className="text-xs font-black uppercase tracking-widest text-yellow-500 mb-6">Lời mở đầu</p>
+              <p className="text-sm text-white/70 italic leading-relaxed mb-8">
+                "Chúng ta nhìn lại 30 năm không phải để hoài niệm, mà để thấy bản lĩnh và chuẩn bị cho một chu kỳ phát triển xanh hơn."
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full border border-yellow-500/30 overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" alt="Hanh" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black uppercase">Bà Vũ Kim Hạnh</p>
+                  <p className="text-[8px] text-yellow-500 font-bold uppercase tracking-widest">Chủ tịch HVNCLC</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CENTER: The Compact Book (Reduced scale) */}
+          <div className="lg:w-2/4 order-1 lg:order-2 flex justify-center py-10">
+            <div 
+              className="relative transition-transform duration-300 ease-out perspective-2000"
+              style={{ transform: `rotateY(${mousePos.x}deg) rotateX(${-mousePos.y}deg)` }}
+            >
+              {/* Glow Behind */}
+              <div className="absolute inset-0 bg-yellow-500/20 blur-[100px] rounded-full scale-125" />
+              
+              {/* Book Structure */}
+              <div className="relative w-[220px] md:w-[320px] aspect-[3/4] group shadow-[40px_40px_80px_rgba(0,0,0,0.6)] rounded-r-2xl overflow-hidden border-l-[10px] border-[#2a080a]">
+                <img 
+                  src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=1200" 
+                  className="w-full h-full object-cover transition-all duration-1000 grayscale group-hover:grayscale-0"
+                  alt="Kỷ yếu"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+                
+                {/* Book Details */}
+                <div className="absolute top-4 right-4 flex flex-col gap-2 items-end">
+                   <div className="px-2 py-1 bg-yellow-500 text-black text-[8px] font-black uppercase tracking-widest rounded-sm">Premium Edition</div>
+                   <Fingerprint className="w-8 h-8 text-white/20" />
+                </div>
+                <div className="absolute bottom-6 left-6">
+                   <p className="text-yellow-500 text-[10px] font-bold mb-1 tracking-widest">ARCHIVE 2026</p>
+                   <h4 className="text-xl font-bold tracking-tighter leading-none italic uppercase">30 Năm Di Sản</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT: TOC (Clean List) */}
+          <div className="lg:w-1/4 order-3">
+            <div className="space-y-4">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-white/30 mb-6 flex items-center gap-2">
+                <History className="w-4 h-4" /> Danh mục chương
+              </p>
+              <div className="space-y-2">
+                {chapters.map((chap, idx) => (
+                  <div 
+                    key={idx} 
+                    onMouseEnter={() => setActiveChapter(idx)}
+                    className={`group flex items-center justify-between p-4 rounded-2xl transition-all duration-500 cursor-pointer border ${
+                      activeChapter === idx 
+                      ? 'bg-white/10 border-yellow-500/40 translate-x-2' 
+                      : 'bg-transparent border-white/5 opacity-40 hover:opacity-100'
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-xs text-yellow-500">{chap.id}</span>
+                      <span className="text-[10px] font-black uppercase text-white group-hover:text-yellow-400">{chap.title}</span>
+                    </div>
+                    <ChevronRight className={`w-3 h-3 text-yellow-500 transition-opacity ${activeChapter === idx ? 'opacity-100' : 'opacity-0'}`} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* BOTTOM: Massive CTA Buttons (Metallic Bar Style) */}
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8 pt-10">
+          
+          <button 
+            className="group relative h-20 w-full md:w-[400px] rounded-full overflow-hidden flex items-center justify-center gap-4 transition-all active:scale-95 shadow-[0_20px_50px_rgba(184,134,11,0.3)]"
+            style={{ background: goldGradient }}
+          >
+            <div className="absolute inset-0 bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 skew-x-12" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700 delay-100 shadow-inner" />
+            <Download className="w-6 h-6 text-[#3d080a]" />
+            <span className="text-[#3d080a] font-black uppercase tracking-[0.2em] text-sm">Bắt đầu tải lên ký ức</span>
+          </button>
+
+          <button className="h-20 w-full md:w-[400px] rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center gap-4 hover:bg-white hover:text-[#3d080a] transition-all duration-700 group">
+            <div className="w-10 h-10 rounded-full bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500 transition-colors">
+              <Play className="w-4 h-4 text-yellow-500 group-hover:text-black fill-current" />
+            </div>
+            <span className="font-black uppercase tracking-[0.2em] text-sm">Trải nghiệm Flipbook 3D</span>
+            <Maximize2 className="w-4 h-4 opacity-30 group-hover:opacity-100 transition-opacity" />
+          </button>
+        </div>
+
+        {/* Floating Data Tags */}
+        <div className="absolute bottom-10 left-10 hidden lg:flex items-center gap-4 opacity-40">
+           <Zap className="w-4 h-4 text-yellow-500" />
+           <p className="text-[10px] font-mono tracking-widest uppercase italic">Size: 45.8MB | Res: Ultra 4K | Format: Digital PDF</p>
+        </div>
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .perspective-2000 { perspective: 2000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        
+        @keyframes shimmer {
+          0% { transform: translateX(-100%) skewX(-12deg); }
+          100% { transform: translateX(200%) skewX(-12deg); }
+        }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+      `}} />
+    </section>
+  );
+}

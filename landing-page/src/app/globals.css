@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Colors */
+  --c-primary:#ED1C24; /* Deep Red */
+  --c-primary-dark: #8A131A;
+  --c-gold: #ffcb08; /* Metallic Gold */
+  --c-gold-light: #F4E2A1;
+  --c-gold-dark: #A68023;
+  
+  --c-bg-light: #FAFAFA;
+  --c-bg-dark: #121212;
+  --c-bg-card: #FFFFFF;
+  
+  --c-text-primary: #1A1A1A;
+  --c-text-secondary: #555555;
+  --c-text-inverse: #FFFFFF;
+
+  /* Typography */
+  /* Prefer Google Sans if available locally/licensed; fall back to Inter from Google Fonts */
+  --font-sans: 'Google Sans', 'Inter', 'Segoe UI', sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  
+  /* Transitions */
+  --transition-base: 0.3s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--c-text-primary);
+  background-color: var(--c-bg-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  /* line-height: 1.2; */
+  color: var(--c-primary-dark);
+}
+
+h1 { font-family: 'Playfair Display', var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Common Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+.section {
+  padding: var(--space-xl) 0;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-gold {
+  /* Fallback color */
+  color: var(--c-gold);
+
+  /* Gold chrome gradient clipped to text */
+  background: linear-gradient(
+    to bottom,
+    #f3c546 0%,
+    #f7ef8a 40%,
+    #edc967 50%,
+    #bb9b49 100%
+  );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+
+  /* Make sure inline elements (span) receive the gradient reliably */
+  display: inline-block;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* visual tweaks */
+  font-weight: 700;
+}
+
+/* Keep heading semantics/layout while still showing gradient */
+.hero-subtitle.text-gold,
+.subpage-title.text-gold,
+h2.text-gold,
+h1.text-gold,
+h3.text-gold {
+  display: block;
+}
+.text-red { color: var(--c-primary); }
+/* .bg-dark { background-color: var(--c-bg-dark); color: var(--c-text-inverse); } */
+
+.bg-dark { background: linear-gradient(135deg, #3d080a 0%, #8a131a 52%, #4a0a0d 100%); }
+
+.bg-dark h2, .bg-dark h3 { color: var(--c-gold); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition-base);
+}
+
+.btn-primary {
+  background-color: var(--c-primary);
+  color: var(--c-text-inverse);
+}
+.btn-primary:hover {
+  background-color: var(--c-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(199, 27, 38, 0.3);
+}
+
+.btn-outline-gold {
+  background-color: transparent;
+  border-color: var(--c-gold);
+  color: var(--c-gold);
+}
+.btn-outline-gold:hover {
+  background-color: var(--c-gold);
+  color: var(--c-text-primary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}

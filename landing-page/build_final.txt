@@ -1,0 +1,75 @@
+﻿
+> landing-page@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+node.exe : ΓÜá The 
+"middleware" file 
+convention is 
+deprecated. Please use 
+"proxy" instead. Learn 
+more: https://nextjs.or
+g/docs/messages/middlew
+are-to-proxy
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (ΓÜá The "midd   
+ le...leware-to-pro    
+xy:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 24.9s
+  Running TypeScript ...
+Failed to compile.
+
+./src/app/api/revalidat
+e/route.ts:22:13
+Type error: Expected 2 
+arguments, but got 1.
+
+[0m [90m 20 |[39m   
+      [90m// 
+Revalidate the 
+matching tag based on 
+document type[39m
+ [90m 21 |[39m       
+  [36mif[39m (_type) 
+{
+[31m[1m>[22m[39m[9
+0m 22 |[39m           
+  revalidateTag(_type)
+ [90m    |[39m       
+      
+[31m[1m^[22m[39m
+ [90m 23 |[39m       
+      [36mreturn[39m 
+[33mNextResponse[39m
+[33m.[39mjson({
+ [90m 24 |[39m       
+          
+revalidated[33m:[39m 
+[36mtrue[39m[33m,[3
+9m
+ [90m 25 |[39m       
+          
+type[33m:[39m 
+_type[33m,[39m[0m
+Next.js build worker 
+exited with code: 1 
+and signal: null

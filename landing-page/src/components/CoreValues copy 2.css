@@ -1,0 +1,87 @@
+.core-values-section {
+    background-color: var(--c-bg-light);
+    color: var(--c-text-primary);
+}
+
+.section-header {
+    margin-bottom: var(--space-xl);
+}
+
+.section-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 0.5rem;
+}
+
+.section-header .subtitle {
+    color: var(--c-text-secondary);
+    font-size: 1.2rem;
+}
+
+.core-values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+}
+
+.value-card {
+    background-color: var(--c-bg-card);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: var(--transition-base);
+    border-bottom: 3px solid transparent;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    border-bottom-color: var(--c-primary);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.value-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.value-title {
+    color: var(--c-primary-dark);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.value-desc {
+    color: var(--c-text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.value-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.stat-num {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--c-primary);
+}
+
+.stat-unit {
+    font-size: 0.85rem;
+    color: var(--c-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+.section-header h2.text-red {
+    color: var(--c-primary); /* Một tông màu đỏ hiện đại và dịu mắt hơn */
+}
