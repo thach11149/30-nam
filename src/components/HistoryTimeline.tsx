@@ -21,17 +21,32 @@ const defaultMilestones: Milestone[] = [
 interface Props {
     milestones?: Milestone[];
     lang?: string;
+    content?: {
+        sectionTitle?: string;
+        sectionSubtitle?: string;
+        detailCtaLabel?: string;
+        detailCtaPath?: string;
+    };
 }
 
-export default function HistoryTimeline({ milestones, lang = 'vi' }: Props) {
+const defaultContent = {
+    sectionTitle: "Hành Trình 30 Năm",
+    sectionSubtitle: "Những cột mốc lịch sử",
+    detailCtaLabel: "Xem câu chuyện chi tiết",
+    detailCtaPath: "lich-su-30-nam",
+};
+
+export default function HistoryTimeline({ milestones, lang = 'vi', content }: Props) {
     const data = milestones && milestones.length > 0 ? milestones : defaultMilestones;
+    const resolved = { ...defaultContent, ...content };
+    const safePath = (resolved.detailCtaPath || defaultContent.detailCtaPath).replace(/^\/+|\/+$/g, '');
 
     return (
         <section className="section timeline-section" id="hanh-trinh">
             <div className="container">
                 <div className="text-center section-header">
-                    <h2 className="text-red">Hành Trình 30 Năm</h2>
-                    <p className="subtitle">Những cột mốc lịch sử</p>
+                    <h2 className="text-red">{resolved.sectionTitle}</h2>
+                    <p className="subtitle">{resolved.sectionSubtitle}</p>
                 </div>
 
                 <div className="timeline-wrapper">
@@ -65,7 +80,7 @@ export default function HistoryTimeline({ milestones, lang = 'vi' }: Props) {
                 </div>
 
                 <div className="text-center mt-xl">
-                    <Link href={`/${lang}/lich-su-30-nam`} className="btn btn-primary">Xem câu chuyện chi tiết</Link>
+                    <Link href={`/${lang}/${safePath}`} className="btn btn-primary">{resolved.detailCtaLabel}</Link>
                 </div>
             </div>
         </section>

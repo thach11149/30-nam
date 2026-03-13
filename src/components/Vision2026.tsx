@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Vision2026.css";
 import {
     Globe,
@@ -15,32 +15,59 @@ import {
     GanttChart,
     ShieldCheck,
     Star,
-    Target,
 } from "lucide-react";
 
 const goldGradient = "linear-gradient(90deg, #B8860B 0%, #F9E498 50%, #9B7E3D 100%)";
 
+interface VisionPillar {
+    title: string;
+    desc: string;
+    tag: string;
+}
+
+interface VisionQuarter {
+    q: string;
+    event: string;
+    theme: string;
+}
+
+interface VisionContent {
+    titleYear?: string;
+    titleLine1?: string;
+    titleLine2?: string;
+    noteLabel?: string;
+    noteTitle?: string;
+    noteDesc?: string;
+    pillars?: VisionPillar[];
+    roadmapTitle?: string;
+    roadmapSubtitle?: string;
+    standardLabel?: string;
+    quarters?: VisionQuarter[];
+    ctaTag?: string;
+    ctaTitleLine1?: string;
+    ctaTitleLine2?: string;
+    ctaDesc?: string;
+    ctaPrimaryLabel?: string;
+    ctaSecondaryLabel?: string;
+}
+
 const strategyPillars = [
     {
-        icon: Users,
         title: "Chuyển sang Hiệp hội",
         desc: "Nâng tầm cấu trúc tổ chức chuyên nghiệp, gia tăng tối đa quyền lợi thành viên.",
         tag: "Cơ cấu",
     },
     {
-        icon: MessageSquare,
         title: "Diễn đàn chính sách",
         desc: "Cầu nối trực tiếp giữa doanh nghiệp và các nhà hoạch định chính sách cấp cao.",
         tag: "Kết nối",
     },
     {
-        icon: GanttChart,
         title: "Kết nối viện trường",
         desc: "Ứng dụng nghiên cứu khoa học vào thực tiễn sản xuất của doanh nghiệp Việt.",
         tag: "Đổi mới",
     },
     {
-        icon: Globe,
         title: "Chuyển đổi xanh - Go Global",
         desc: "Chuẩn hóa quy trình bền vững để tự tin vươn tầm thị trường quốc tế.",
         tag: "Vươn xa",
@@ -54,8 +81,37 @@ const quarters = [
     { q: "Q4", event: "Grand Gala 30 năm HVNCLC", theme: "Thịnh vượng" },
 ];
 
-export default function Vision2026() {
+const defaultContent: Required<VisionContent> = {
+    titleYear: "2026",
+    titleLine1: "KHỞI ĐẦU",
+    titleLine2: "VẬN HỘI MỚI",
+    noteLabel: "Innovation Era",
+    noteTitle: "Tăng tốc - Chuẩn hóa - Toàn cầu",
+    noteDesc: "Chuyển mình để dẫn đầu kỷ nguyên xanh và khẳng định vị thế bền vững.",
+    pillars: strategyPillars,
+    roadmapTitle: "Roadmap 2026",
+    roadmapSubtitle: "Chiến lược hành động theo quý",
+    standardLabel: "Global Standard",
+    quarters,
+    ctaTag: "Join the Future 2026",
+    ctaTitleLine1: "KHƠI DẬY",
+    ctaTitleLine2: "TIỀM LỰC VIỆT",
+    ctaDesc: "Trở thành đối tác chiến lược để cùng kiến tạo chu kỳ phát triển bền vững.",
+    ctaPrimaryLabel: "Đồng hành tài trợ",
+    ctaSecondaryLabel: "Liên hệ Ban Tổ chức",
+};
+
+const pillarIcons = [Users, MessageSquare, GanttChart, Globe];
+
+export default function Vision2026({ content }: { content?: VisionContent }) {
     const [hoveredQuarter, setHoveredQuarter] = useState<number | null>(null);
+
+    const resolved = {
+        ...defaultContent,
+        ...content,
+        pillars: content?.pillars?.length ? content.pillars : defaultContent.pillars,
+        quarters: content?.quarters?.length ? content.quarters : defaultContent.quarters,
+    };
 
     return (
         <section className="vision2026" id="tam-nhin">
@@ -81,12 +137,12 @@ export default function Vision2026() {
                         <h2
                             className="vision2026-title"
                         >
-                            <span className="vision2026-title-2026">2026</span>
+                            <span className="vision2026-title-2026">{resolved.titleYear}</span>
                             <br />
-                            <span className="vision2026-title-line">KHỞI ĐẦU</span>
+                            <span className="vision2026-title-line">{resolved.titleLine1}</span>
                             <br />
                             {/* <span className="vision2026-title-accent-wrap vision2026-title-outline-wrap"> */}
-                            <span className="vision2026-title-outline vision2026-title-type-2">VẬN HỘI MỚI</span>
+                            <span className="vision2026-title-outline vision2026-title-type-2">{resolved.titleLine2}</span>
                                 {/* <span className="vision2026-title-accent" /> */}
                             {/* </span> */}
                         </h2>
@@ -95,26 +151,28 @@ export default function Vision2026() {
                     <div className="vision2026-header-note">
                         <div className="vision2026-note-top">
                             <TrendingUp className="vision2026-note-icon" />
-                            <span className="vision2026-note-label">Innovation Era</span>
+                            <span className="vision2026-note-label">{resolved.noteLabel}</span>
                         </div>
                         <p className="vision2026-note-title">
-                            Tăng tốc - Chuẩn hóa - Toàn cầu
+                            {resolved.noteTitle}
                         </p>
                         <p className="vision2026-note-desc">
-                            Chuyển mình để dẫn đầu kỷ nguyên xanh và khẳng định vị thế bền vững.
+                            {resolved.noteDesc}
                         </p>
                     </div>
                 </header>
 
                 <section className="vision2026-pillars">
-                    {strategyPillars.map((pillar, idx) => (
+                    {resolved.pillars.map((pillar, idx) => {
+                        const PillarIcon = pillarIcons[idx % pillarIcons.length];
+                        return (
                         <article
                             key={pillar.title}
                             className="vision2026-pillar"
                         >
                             <div className="vision2026-pillar-index">{idx + 1}</div>
                             <div className="vision2026-pillar-icon-wrap">
-                                <pillar.icon className="vision2026-pillar-icon" />
+                                <PillarIcon className="vision2026-pillar-icon" />
                             </div>
                             <div className="vision2026-pillar-tag-wrap">
                                 <span className="vision2026-pillar-tag">{pillar.tag}</span>
@@ -122,7 +180,7 @@ export default function Vision2026() {
                             <h3 className="vision2026-pillar-title">{pillar.title}</h3>
                             <p className="vision2026-pillar-desc">{pillar.desc}</p>
                         </article>
-                    ))}
+                    )})}
                 </section>
 
                 <section className="vision2026-roadmap">
@@ -132,21 +190,21 @@ export default function Vision2026() {
                                 <Calendar className="vision2026-roadmap-icon" />
                             </div>
                             <div>
-                                <h4 className="vision2026-roadmap-title">Roadmap 2026</h4>
+                                <h4 className="vision2026-roadmap-title">{resolved.roadmapTitle}</h4>
                                 <p className="vision2026-roadmap-subtitle">
-                                    Chiến lược hành động theo quý
+                                    {resolved.roadmapSubtitle}
                                 </p>
                             </div>
                         </div>
 
                         <div className="vision2026-standard-pill">
                             <ShieldCheck className="vision2026-standard-icon" />
-                            <span className="vision2026-standard-text">Global Standard</span>
+                            <span className="vision2026-standard-text">{resolved.standardLabel}</span>
                         </div>
                     </div>
 
                     <div className="vision2026-quarters">
-                        {quarters.map((q, idx) => {
+                        {resolved.quarters.map((q, idx) => {
                             const active = hoveredQuarter === idx;
                             return (
                                 <article
@@ -181,15 +239,15 @@ export default function Vision2026() {
                                 <div className="vision2026-cta-tag">
                                     <Award className="vision2026-cta-tag-icon" />
                                     <span className="vision2026-cta-tag-text">
-                                        Join the Future 2026
+                                        {resolved.ctaTag}
                                     </span>
                                 </div>
                                 <h4 className="vision2026-cta-title">
-                                    KHƠI DẬY <br />
-                                    <span className="vision2026-cta-title-red">TIỀM LỰC VIỆT</span>
+                                    {resolved.ctaTitleLine1} <br />
+                                    <span className="vision2026-cta-title-red">{resolved.ctaTitleLine2}</span>
                                 </h4>
                                 <p className="vision2026-cta-desc">
-                                    Trở thành đối tác chiến lược để cùng kiến tạo chu kỳ phát triển bền vững.
+                                    {resolved.ctaDesc}
                                 </p>
                             </div>
 
@@ -202,7 +260,7 @@ export default function Vision2026() {
                                     <div className="vision2026-sweep" />
                                     <div className="vision2026-shimmer" />
                                     <Zap className="vision2026-cta-primary-icon" />
-                                    <span className="vision2026-cta-primary-text">Đồng hành tài trợ</span>
+                                    <span className="vision2026-cta-primary-text">{resolved.ctaPrimaryLabel}</span>
                                     <ArrowUpRight className="vision2026-cta-primary-arrow" />
                                 </button>
 
@@ -210,7 +268,7 @@ export default function Vision2026() {
                                     className="vision2026-cta-secondary"
                                     type="button"
                                 >
-                                    <span>Liên hệ Ban Tổ chức</span>
+                                    <span>{resolved.ctaSecondaryLabel}</span>
                                     <ChevronRight className="vision2026-cta-secondary-arrow" />
                                 </button>
                             </div>

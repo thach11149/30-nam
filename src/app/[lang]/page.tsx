@@ -10,7 +10,7 @@ import Vision2026 from "@/components/Vision2026";
 import Statistics from "@/components/Statistics";
 
 import { getDictionary } from '@/dictionaries/getDictionary'
-import { getPhotoStories, getTimelineEvents, getTestimonials } from '@/sanity/lib/queries'
+import { getHomeContent, getPhotoStories, getTimelineEvents, getTestimonials } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
 import type { PhotoStoryItem } from '@/components/PhotoGallery'
 import type { Milestone } from '@/components/HistoryTimeline'
@@ -26,12 +26,13 @@ export default async function Home({
   const dict = await getDictionary(lang);
 
   // Fetch Sanity data (server-side with tag-based caching)
-  const [sanityStories, sanityTimeline, sanityTestimonials, assetImages, heroBgSanity] = await Promise.all([
+  const [sanityStories, sanityTimeline, sanityTestimonials, assetImages, heroBgSanity, homeContent] = await Promise.all([
     getPhotoStories().catch(() => []),
     getTimelineEvents().catch(() => []),
     getTestimonials().catch(() => []),
     getAssetImages().catch(() => []),
     getBackgroundSectionHeroImage().catch(() => null),
+    getHomeContent().catch(() => null),
   ]);
 
   // Map Sanity data to component interfaces (i18n-aware)
@@ -53,15 +54,21 @@ export default async function Home({
     imageUrl: t.imageUrl,
   }));
 
-  const testimonials: TestimonialItem[] = sanityTestimonials.map((t: any) => ({
-    id: t._id,
-    name: t.author,
-    role: lang === 'en' && t.roleEn ? t.roleEn : t.role || '',
-    quote: lang === 'en' && t.quoteEn ? t.quoteEn : t.quote,
-    cat: 'all',
-    avatarUrl: t.avatarUrl,
-    videoUrl: t.videoUrl,
-  }));
+  const testimonials: TestimonialItem[] = sanityTestimonials.map((t: any) => {
+    const safeCategory = ['doanh-nghiep', 'chuyen-gia', 'the-he-tre', 'dai-su'].includes(t.category)
+      ? t.category
+      : 'doanh-nghiep';
+
+    return {
+      id: t._id,
+      name: t.author,
+      role: lang === 'en' && t.roleEn ? t.roleEn : t.role || '',
+      quote: lang === 'en' && t.quoteEn ? t.quoteEn : t.quote,
+      cat: safeCategory,
+      avatarUrl: t.avatarUrl,
+      videoUrl: t.videoUrl,
+    }
+  });
 
   // Lấy hình có title là 'Banner 30 năm' từ Asset Image
   const bannerImage = assetImages.find((img: any) => img.title === 'Banner 30 năm');
@@ -71,13 +78,13 @@ export default async function Home({
     <>
       <HeroSection dict={dict} heroImageUrl={heroImageUrl} heroBgSanity={heroBgSanity} />
       <CoreValues dict={dict} />
-      <HistoryTimeline milestones={milestones} lang={lang} />
-      <Event2026 />
-      <TestimonialGrid testimonials={testimonials} />
-      <PhotoGallery stories={stories} />
-      <EbookArchive />
-      <Vision2026 />
-      <Statistics />
+      <HistoryTimeline milestones={milestones} lang={lang} content={homeContent?.historyTimelineSection} />
+      <Event2026 content={homeContent?.event2026} />
+      <TestimonialGrid testimonials={testimonials} content={homeContent?.testimonialSection} />
+      <PhotoGallery stories={stories} content={homeContent?.photoGallerySection} />
+      <EbookArchive content={homeContent?.ebookArchive} />
+      <Vision2026 content={homeContent?.vision2026} />
+      <Statistics content={homeContent?.statistics} />
     </>
   );
 }

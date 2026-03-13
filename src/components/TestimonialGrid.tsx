@@ -78,21 +78,45 @@ export const demoTestimonials: TestimonialItem[] = [
 
 interface Props {
     testimonials?: TestimonialItem[];
+    content?: {
+        kicker?: string;
+        titleMain?: string;
+        titleHighlight?: string;
+        subtitle?: string;
+        tabs?: Array<{ id: string; label: string }>;
+        durationLabel?: string;
+        moreStoriesLabel?: string;
+        moreStoriesHref?: string;
+    };
 }
 
-export default function TestimonialGrid({ testimonials }: Props) {
-    const [activeTab, setActiveTab] = useState("all");
-    const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
-
-    const data = testimonials && testimonials.length > 0 ? testimonials : demoTestimonials;
-
-    const tabs = [
+const defaultContent = {
+    kicker: "Chia sẻ từ cộng đồng",
+    titleMain: "HỌ ĐÃ NÓI GÌ VỀ",
+    titleHighlight: "30 NĂM",
+    subtitle: "Lắng nghe những câu chuyện truyền cảm hứng từ các nhà lãnh đạo, chuyên gia và thế hệ kế thừa hành trình hàng Việt.",
+    tabs: [
         { id: "all", label: "Tất cả" },
         { id: "doanh-nghiep", label: "Doanh nghiệp 30 năm" },
         { id: "chuyen-gia", label: "Chuyên gia" },
         { id: "the-he-tre", label: "Thế hệ trẻ" },
         { id: "dai-su", label: "Đại sứ hàng Việt" },
-    ];
+    ],
+    durationLabel: "0:45",
+    moreStoriesLabel: "XEM THÊM TẤT CẢ CÂU CHUYỆN",
+    moreStoriesHref: "/tat-ca-video",
+};
+
+export default function TestimonialGrid({ testimonials, content }: Props) {
+    const [activeTab, setActiveTab] = useState("all");
+    const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
+    const data = testimonials && testimonials.length > 0 ? testimonials : demoTestimonials;
+    const resolved = {
+        ...defaultContent,
+        ...content,
+        tabs: content?.tabs?.length ? content.tabs : defaultContent.tabs,
+    };
 
     const filtered = useMemo(
         () => (activeTab === "all" ? data : data.filter((t) => t.cat === activeTab)),
@@ -105,19 +129,19 @@ export default function TestimonialGrid({ testimonials }: Props) {
                 <div className="testimonial-header text-center section-header">
                     <div className="testimonial-kicker-wrap">
                         <div className="testimonial-kicker-line" />
-                        <span className="testimonial-kicker">Chia sẻ từ cộng đồng</span>
+                        <span className="testimonial-kicker">{resolved.kicker}</span>
                         <div className="testimonial-kicker-line" />
                     </div>
                     <h2 className="testimonial-title">
-                        HỌ ĐÃ NÓI GÌ VỀ <span>30 NĂM</span>
+                        {resolved.titleMain} <span>{resolved.titleHighlight}</span>
                     </h2>
                     <p className="subtitle testimonial-subtitle">
-                        Lắng nghe những câu chuyện truyền cảm hứng từ các nhà lãnh đạo, chuyên gia và thế hệ kế thừa hành trình hàng Việt.
+                        {resolved.subtitle}
                     </p>
                 </div>
 
                 <div className="testimonial-tabs">
-                    {tabs.map((tab) => (
+                    {resolved.tabs.map((tab) => (
                         <button
                             key={tab.id}
                             className={`tab-btn ${activeTab === tab.id ? "active" : ""}`}
@@ -149,7 +173,7 @@ export default function TestimonialGrid({ testimonials }: Props) {
                                     <Play className="t-play-icon" />
                                 </button>
 
-                                <div className="t-duration">0:45</div>
+                                <div className="t-duration">{resolved.durationLabel}</div>
                             </div>
 
                             <div className="t-content">
@@ -182,8 +206,8 @@ export default function TestimonialGrid({ testimonials }: Props) {
                 </div>
 
                 <div className="testimonial-more-wrap">
-                    <a href="/tat-ca-video" className="testimonial-more-link">
-                        <span>XEM THÊM TẤT CẢ CÂU CHUYỆN</span>
+                    <a href={resolved.moreStoriesHref} className="testimonial-more-link">
+                        <span>{resolved.moreStoriesLabel}</span>
                         <Star className="testimonial-more-star" />
                         <div className="testimonial-more-line" />
                     </a>

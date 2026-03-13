@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sanity:migrate:testimonial-category": "node scripts/migrate-testimonial-category.mjs",
+    "sanity:migrate:testimonial-category:apply": "node scripts/migrate-testimonial-category.mjs --apply",
+    "sanity:migrate:homecontent-ids": "node scripts/migrate-homecontent-ui-ids.mjs",
+    "sanity:migrate:homecontent-ids:apply": "node scripts/migrate-homecontent-ui-ids.mjs --apply",
+    "sanity:migrate:testimonial-category:cli": "sanity exec scripts/migrate-testimonial-category-cli.mjs --with-user-token",
+    "sanity:migrate:testimonial-category:cli:apply": "sanity exec scripts/migrate-testimonial-category-cli.mjs --with-user-token -- --apply"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.1",

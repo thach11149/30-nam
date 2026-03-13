@@ -10,11 +10,33 @@ import {
     Play,
     Sparkles,
     Star,
-    Zap,
 } from "lucide-react";
 import "./EbookArchive.css";
 
-const chapters = [
+interface EbookChapter {
+    id: string;
+    title: string;
+    tag: string;
+    cover: string;
+    coverNote: string;
+    description: string;
+}
+
+interface EbookArchiveContent {
+    kicker?: string;
+    titleLine1?: string;
+    titleLine2?: string;
+    subtitle?: string;
+    chapterListTitle?: string;
+    authorName?: string;
+    authorRole?: string;
+    authorAvatar?: string;
+    primaryCtaLabel?: string;
+    secondaryCtaLabel?: string;
+    chapters?: EbookChapter[];
+}
+
+const defaultChapters: EbookChapter[] = [
     {
         id: "01",
         title: "Khởi nguồn 1996",
@@ -53,9 +75,30 @@ const chapters = [
     },
 ];
 
-export default function EbookArchive() {
+const defaultContent: Required<Omit<EbookArchiveContent, "chapters">> & { chapters: EbookChapter[] } = {
+    kicker: "ẤN PHẨM ĐẶC BIỆT KỶ NIỆM 30 NĂM",
+    titleLine1: "DI SẢN",
+    titleLine2: "THƯỢNG HẠNG",
+    subtitle:
+        "Hành trình 3 thập kỷ bản sắc Việt, được gói gọn trong 218 trang tư liệu tinh hoa. Khám phá những câu chuyện chưa từng kể về sức mạnh thương hiệu Việt.",
+    chapterListTitle: "Danh mục chương",
+    authorName: "Ba Vu Kim Hanh",
+    authorRole: "Chu tich HVNCLC",
+    authorAvatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+    primaryCtaLabel: "Bat dau tai len ky uc",
+    secondaryCtaLabel: "Trai nghiem Flipbook 3D",
+    chapters: defaultChapters,
+};
+
+export default function EbookArchive({ content }: { content?: EbookArchiveContent }) {
     const [activeChapter, setActiveChapter] = useState(0);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+    const resolved = {
+        ...defaultContent,
+        ...content,
+        chapters: content?.chapters?.length ? content.chapters : defaultContent.chapters,
+    };
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -69,7 +112,7 @@ export default function EbookArchive() {
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
-    const currentChapter = chapters[activeChapter] || chapters[0];
+    const currentChapter = resolved.chapters[activeChapter] || resolved.chapters[0];
 
     return (
         <section className="section ebookx-section" id="ebook">
@@ -84,16 +127,15 @@ export default function EbookArchive() {
                 <header className="ebookx-head">
                     <div className="ebookx-kicker">
                         <Sparkles />
-                        <span>ẤN PHẨM ĐẶC BIỆT KỶ NIỆM 30 NĂM</span>
+                        <span>{resolved.kicker}</span>
                     </div>
                     <h2 className="ebookx-title">
-                        DI SẢN
+                        {resolved.titleLine1}
                         <br />
-                        THƯỢNG HẠNG
+                        {resolved.titleLine2}
                     </h2>
                     <p className="ebookx-subtitle">
-                        Hành trình 3 thập kỷ bản sắc Việt, được gói gọn trong 218 trang tư liệu tinh hoa. Khám phá
-                        những câu chuyện chưa từng kể về sức mạnh thương hiệu Việt.
+                        {resolved.subtitle}
                     </p>
                 </header>
 
@@ -107,13 +149,13 @@ export default function EbookArchive() {
                         <div className="ebookx-author">
                             <div className="ebookx-author-avatar">
                                 <img
-                                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200"
+                                    src={resolved.authorAvatar}
                                     alt="Tac gia"
                                 />
                             </div>
                             <div>
-                                <p className="ebookx-author-name">Ba Vu Kim Hanh</p>
-                                <p className="ebookx-author-role">Chu tich HVNCLC</p>
+                                <p className="ebookx-author-name">{resolved.authorName}</p>
+                                <p className="ebookx-author-role">{resolved.authorRole}</p>
                             </div>
                         </div>
                     </aside>
@@ -159,10 +201,10 @@ export default function EbookArchive() {
 
                     <aside className="ebookx-chapters">
                         <p className="ebookx-chapter-head">
-                            <History /> Danh muc chuong
+                            <History /> {resolved.chapterListTitle}
                         </p>
                         <div className="ebookx-chapter-list">
-                            {chapters.map((chap, idx) => (
+                            {resolved.chapters.map((chap, idx) => (
                                 <div
                                     key={chap.id}
                                     onMouseEnter={() => setActiveChapter(idx)}
@@ -187,14 +229,14 @@ export default function EbookArchive() {
                     <button className="ebookx-cta-primary" type="button">
                         <span className="ebookx-shine" />
                         <Download />
-                        <span>Bat dau tai len ky uc</span>
+                        <span>{resolved.primaryCtaLabel}</span>
                     </button>
 
                     <button className="ebookx-cta-secondary" type="button">
                         <div className="ebookx-play-badge">
                             <Play />
                         </div>
-                        <span>Trai nghiem Flipbook 3D</span>
+                        <span>{resolved.secondaryCtaLabel}</span>
                         <Maximize2 />
                     </button>
                 </div>

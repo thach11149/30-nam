@@ -43,6 +43,7 @@ export async function getTestimonials() {
   return client.fetch(
     `*[_type == "testimonial"] {
       _id,
+      category,
       quote,
       quoteEn,
       author,
@@ -78,5 +79,27 @@ export async function getPhotoStories() {
     }`,
     {},
     { next: { tags: ['photoStory'] } }
+  )
+}
+
+// --- Homepage Content Blocks ---
+export async function getHomeContent() {
+  if (!client) return null
+
+  return client.fetch(
+    `*[_type == "homeContent" && (configKey == "default-home" || !defined(configKey))] | order(_updatedAt desc) [0] {
+      _id,
+      name,
+      configKey,
+      event2026,
+      vision2026,
+      statistics,
+      ebookArchive,
+      historyTimelineSection,
+      testimonialSection,
+      photoGallerySection
+    }`,
+    {},
+    { next: { tags: ['homeContent'] } }
   )
 }

@@ -103,12 +103,43 @@ const DEFAULT_STORIES: PhotoStory[] = [
 interface Props {
     photos?: GalleryPhoto[];
     stories?: PhotoStoryItem[];
+    content?: {
+        titlePrimary?: string;
+        titleMuted?: string;
+        brandLabel?: string;
+        filters?: Array<{ id: string; label: string }>;
+        infoTitle?: string;
+        locationLabel?: string;
+        characterLabel?: string;
+        expandLabel?: string;
+        reelTitle?: string;
+        closeLensLabel?: string;
+    };
 }
 
-export default function PhotoGallery({ photos, stories: incomingStories }: Props) {
+const defaultContent = {
+    titlePrimary: "ỐNG KÍNH",
+    titleMuted: "DI SẢN",
+    brandLabel: "Visual Documentation",
+    filters: FILTERS,
+    infoTitle: "Thông tin hình ảnh",
+    locationLabel: "Vị trí",
+    characterLabel: "Nhân vật",
+    expandLabel: "Mở rộng tư liệu",
+    reelTitle: "Cuộn phim di sản",
+    closeLensLabel: "Đóng ống kính",
+};
+
+export default function PhotoGallery({ photos, stories: incomingStories, content }: Props) {
     const [activeFilter, setActiveFilter] = useState("all");
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isExpanding, setIsExpanding] = useState(false);
+
+    const resolved = {
+        ...defaultContent,
+        ...content,
+        filters: content?.filters?.length ? content.filters : defaultContent.filters,
+    };
 
     const stories = useMemo<PhotoStory[]>(() => {
         if (incomingStories && incomingStories.length > 0) {
@@ -173,12 +204,12 @@ export default function PhotoGallery({ photos, stories: incomingStories }: Props
                             <div className="gallery-camera-badge">
                                 <Camera />
                             </div>
-                            <span className="gallery-brand-text">Visual Documentation</span>
+                            <span className="gallery-brand-text">{resolved.brandLabel}</span>
                         </div> */}
                         <h2 className="gallery-main-title">
-                            <span className="gallery-main-title-primary">ỐNG KÍNH</span>{" "}
+                            <span className="gallery-main-title-primary">{resolved.titlePrimary}</span>{" "}
                             <br />
-                            <span className="gallery-main-title-muted">DI SẢN</span>
+                            <span className="gallery-main-title-muted">{resolved.titleMuted}</span>
                         </h2>
                     </div>
 
@@ -188,9 +219,9 @@ export default function PhotoGallery({ photos, stories: incomingStories }: Props
                             <div className="gallery-camera-badge">
                                 <Camera />
                             </div>
-                            <span className="gallery-brand-text">Visual Documentation</span>
+                            <span className="gallery-brand-text">{resolved.brandLabel}</span>
                         </div>
-                        {FILTERS.map((filter) => (
+                        {resolved.filters.map((filter) => (
                             <button
                                 key={filter.id}
                                 type="button"
@@ -259,12 +290,12 @@ export default function PhotoGallery({ photos, stories: incomingStories }: Props
                     <aside className="gallery-side">
                         <div className="gallery-metadata-head">
                             <Info />
-                            <span>Thông tin hình ảnh</span>
+                            <span>{resolved.infoTitle}</span>
                         </div>
 
                         <div className="gallery-meta-grid">
                             <div className="gallery-meta-card">
-                                <p>Vị trí</p>
+                                <p>{resolved.locationLabel}</p>
                                 <div>
                                     <MapPin />
                                     <span>{currentStory?.location}</span>
@@ -272,7 +303,7 @@ export default function PhotoGallery({ photos, stories: incomingStories }: Props
                             </div>
 
                             <div className="gallery-meta-card">
-                                <p>Nhân vật</p>
+                                <p>{resolved.characterLabel}</p>
                                 <div>
                                     <User2 />
                                     <span>{currentStory?.character}</span>
@@ -294,12 +325,12 @@ export default function PhotoGallery({ photos, stories: incomingStories }: Props
                                 onClick={() => setIsExpanding(true)}
                                 className="gallery-expand-btn"
                             >
-                                Mở rộng tư liệu <ArrowRight />
+                                {resolved.expandLabel} <ArrowRight />
                             </button>
                         </div>
 
                         <div className="gallery-reel-wrap">
-                            <p>Cuộn phim di sản</p>
+                            <p>{resolved.reelTitle}</p>
                             <div className="gallery-reel">
                                 {filteredStories.map((story, idx) => (
                                     <button
@@ -329,7 +360,7 @@ export default function PhotoGallery({ photos, stories: incomingStories }: Props
                         onClick={() => setIsExpanding(false)}
                         className="gallery-modal-close"
                     >
-                        Đóng ống kính <X />
+                        {resolved.closeLensLabel} <X />
                     </button>
 
                     <div className="gallery-modal-content">
