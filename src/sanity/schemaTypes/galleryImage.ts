@@ -1,6 +1,6 @@
 export const galleryImage = {
     name: 'galleryImage',
-    title: 'Gallery Image',
+    title: 'Hình sự kiện (Mới làm nháp Chưa dùng)',
     type: 'document',
     fields: [
         {

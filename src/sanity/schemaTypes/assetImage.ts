@@ -1,6 +1,6 @@
 export const assetImage = {
     name: 'assetImage',
-    title: 'Asset Image',
+    title: 'Logo tài trợ, hình ảnh khác',
     type: 'document',
     fields: [
         {

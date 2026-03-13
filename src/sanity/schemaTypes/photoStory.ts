@@ -1,6 +1,6 @@
 export const photoStory = {
     name: 'photoStory',
-    title: 'Photo Story',
+    title: 'Câu chuyện ảnh',
     type: 'document',
     fields: [
         {

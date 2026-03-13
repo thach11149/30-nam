@@ -1,6 +1,6 @@
 export const timelineEvent = {
     name: 'timelineEvent',
-    title: 'Timeline Event',
+    title: 'Sự kiện mốc thời gian 30 năm',
     type: 'document',
     fields: [
         {
